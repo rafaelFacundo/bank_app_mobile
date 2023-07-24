@@ -5,6 +5,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 import InitialScreen from "./src/screens/InitialScreen";
 import NameScreen from "./src/screens/NameScreen";
+import EmailScreen from "./src/screens/EmailScreen";
 
 export default function App() {
   const { isReady } = useLoadInitialData();
@@ -21,7 +22,7 @@ export default function App() {
 
   return (
     <View onLayout={onLayoutRootView} style={styles.container}>
-      <NameScreen />
+      <EmailScreen />
     </View>
   );
 }
