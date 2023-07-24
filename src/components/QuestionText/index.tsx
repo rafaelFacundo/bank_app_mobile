@@ -4,10 +4,11 @@ import styles from "./styles";
 
 interface Props {
   question: string;
+  fontSize: number;
 }
 
-const QuestionText: React.FC<Props> = ({ question }) => {
-  return <Text style={styles.questionText}>{question}</Text>;
+const QuestionText: React.FC<Props> = ({ question, fontSize }) => {
+  return <Text style={styles.questionText(fontSize)}>{question}</Text>;
 };
 
 export default QuestionText;

@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderBottomColor: styleConstants.default_backgroundColor,
     borderBottomWidth: 4,
+    fontSize: 20,
   },
 });
 

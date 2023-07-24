@@ -5,8 +5,8 @@ import styles from "./styles";
 
 const ArrowBackButton: React.FC = () => {
   return (
-    <TouchableOpacity>
-      <Image source={ArrowBack} />
+    <TouchableOpacity style={styles.arrowBackButton}>
+      <Image source={ArrowBack} style={styles.arrowBackImage} />
     </TouchableOpacity>
   );
 };
