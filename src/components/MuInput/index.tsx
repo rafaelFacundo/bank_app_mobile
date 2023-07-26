@@ -1,9 +1,20 @@
-import React from "react";
-import { TextInput } from "react-native";
+import React, { SetStateAction } from "react";
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputChangeEventData,
+} from "react-native";
 import styles from "./styles";
 
-const MuInput: React.FC = () => {
-  return <TextInput style={styles.muInput} />;
+interface Props {
+  setState: React.Dispatch<SetStateAction<string>>;
+}
+
+const MuInput: React.FC<Props> = ({ setState }) => {
+  const handleChangeEvent = (value: string): void => {
+    setState(value);
+  };
+  return <TextInput onChangeText={handleChangeEvent} style={styles.muInput} />;
 };
 
 export default MuInput;

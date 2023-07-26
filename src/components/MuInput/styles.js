@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     borderBottomColor: styleConstants.default_backgroundColor,
     borderBottomWidth: 4,
     fontSize: 20,
+    marginBottom: 15,
   },
 });
 
