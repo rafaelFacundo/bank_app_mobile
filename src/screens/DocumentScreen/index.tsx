@@ -7,18 +7,35 @@ import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
 
-const NameScreen: React.FC = () => {
-  const [name, setName] = useState("");
+const DocumentScreen: React.FC = () => {
+  const [documentNumber, setDocumentNumber] = useState("");
+  const documentMask = (cpfString: string): string => {
+    if (cpfString.length === 11) {
+      const newString = `${cpfString.slice(0, 3)}.${cpfString.slice(
+        3,
+        6
+      )}.${cpfString.slice(6, 9)}-${cpfString.slice(9)}`;
+      return newString;
+    }
+    return cpfString;
+  };
   return (
     <Container>
       <ArrowBackButton />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
-            <QuestionText fontSize={30} question={"Qual o seu nome ?"} />
+            <QuestionText
+              fontSize={30}
+              question={"Digite o número do seu CPF: "}
+            />
           </View>
           <View style={styles.inputView}>
-            <MuInput setState={setName} state={name} />
+            <MuInput
+              setState={setDocumentNumber}
+              state={documentNumber}
+              maskFunction={documentMask}
+            />
           </View>
         </View>
 
@@ -28,4 +45,4 @@ const NameScreen: React.FC = () => {
   );
 };
 
-export default NameScreen;
+export default DocumentScreen;
