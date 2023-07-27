@@ -7,25 +7,24 @@ import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
 
-const EmailScreen: React.FC = () => {
-  const [email, setEmail] = useState("");
+const PasswordScreen: React.FC = () => {
+  const [password, setPassword] = useState("");
   return (
     <Container>
       <ArrowBackButton />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
-            <QuestionText fontSize={30} question={"Qual o seu email ?"} />
+            <QuestionText fontSize={30} question={"Qual a sua senha ?"} />
           </View>
           <View style={styles.inputView}>
-            <MuInput setState={setEmail} state={email} />
+            <MuInput setState={setPassword} state={password} />
           </View>
         </View>
-
         <MuButton text={"Avançar"} />
       </View>
     </Container>
   );
 };
 
-export default EmailScreen;
+export default PasswordScreen;
