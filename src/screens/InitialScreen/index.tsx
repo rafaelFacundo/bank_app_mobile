@@ -37,7 +37,10 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
         />
       </View>
 
-      <TouchableOpacity style={styles.goToLoginButton}>
+      <TouchableOpacity
+        style={styles.goToLoginButton}
+        onPress={() => navigation.navigate("LoginStack")}
+      >
         <Text style={styles.goToLoginText}>Entrar na minha conta</Text>
       </TouchableOpacity>
     </Container>
