@@ -9,6 +9,7 @@ import EmailScreen from "./src/screens/EmailScreen";
 import DateScreen from "./src/screens/DateScreen";
 import AddressScreen from "./src/screens/AddressScreen";
 import DocumentScreen from "./src/screens/DocumentScreen";
+import Navigation from "./src/components/Navigation/Navigation";
 
 export default function App() {
   const { isReady } = useLoadInitialData();
@@ -25,7 +26,7 @@ export default function App() {
 
   return (
     <View onLayout={onLayoutRootView} style={styles.container}>
-      <DocumentScreen />
+      <Navigation />
     </View>
   );
 }
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
   },
 });

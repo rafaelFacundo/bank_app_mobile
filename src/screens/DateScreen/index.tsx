@@ -8,7 +8,11 @@ import MuButton from "../../components/MuButton";
 import styles from "./styles";
 import DateInput from "../../components/DateInput";
 
-const DateScreen: React.FC = () => {
+interface Props {
+  navigation: any;
+}
+
+const DateScreen: React.FC<Props> = ({ navigation }) => {
   const [showPicker, setShowPicker] = useState(false);
   const [dateToShow, setDateToShow] = useState(new Date(Date.now()));
 
@@ -22,7 +26,7 @@ const DateScreen: React.FC = () => {
 
   return (
     <Container>
-      <ArrowBackButton />
+      <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
@@ -41,7 +45,15 @@ const DateScreen: React.FC = () => {
           </View>
         </View>
 
-        <MuButton text={"Avançar"} />
+        <MuButton
+          text={"Avançar"}
+          onPress={() =>
+            dateToShow &&
+            navigation.navigate("CreateAccountStack", {
+              screen: "AddressScreenCreate",
+            })
+          }
+        />
       </View>
     </Container>
   );

@@ -7,11 +7,15 @@ import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
 
-const EmailScreen: React.FC = () => {
+interface Props {
+  navigation: any;
+}
+
+const EmailScreen: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState("");
   return (
     <Container>
-      <ArrowBackButton />
+      <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
@@ -22,7 +26,15 @@ const EmailScreen: React.FC = () => {
           </View>
         </View>
 
-        <MuButton text={"Avançar"} />
+        <MuButton
+          text={"Avançar"}
+          onPress={() =>
+            email &&
+            navigation.navigate("CreateAccountStack", {
+              screen: "DocumentScreenCreate",
+            })
+          }
+        />
       </View>
     </Container>
   );

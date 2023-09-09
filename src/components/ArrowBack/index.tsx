@@ -3,9 +3,13 @@ import { TouchableOpacity, Image } from "react-native";
 import ArrowBack from "../../../assets/arrowBack.png";
 import styles from "./styles";
 
-const ArrowBackButton: React.FC = () => {
+interface Props {
+  onPress: any;
+}
+
+const ArrowBackButton: React.FC<Props> = ({ onPress }) => {
   return (
-    <TouchableOpacity style={styles.arrowBackButton}>
+    <TouchableOpacity style={styles.arrowBackButton} onPress={onPress}>
       <Image source={ArrowBack} style={styles.arrowBackImage} />
     </TouchableOpacity>
   );

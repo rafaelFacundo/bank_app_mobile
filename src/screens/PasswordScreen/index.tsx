@@ -7,11 +7,15 @@ import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
 
-const PasswordScreen: React.FC = () => {
+interface Props {
+  navigation: any;
+}
+
+const PasswordScreen: React.FC<Props> = ({ navigation }) => {
   const [password, setPassword] = useState("");
   return (
     <Container>
-      <ArrowBackButton />
+      <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
@@ -21,7 +25,7 @@ const PasswordScreen: React.FC = () => {
             <MuInput setState={setPassword} state={password} />
           </View>
         </View>
-        <MuButton text={"Avançar"} />
+        <MuButton text={"Avançar"} onPress={() => navigation.goBack()} />
       </View>
     </Container>
   );

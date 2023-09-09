@@ -4,11 +4,12 @@ import styles from "./styles";
 
 interface Props {
   text: string;
+  onPress: any;
 }
 
-const MuButton: React.FC<Props> = ({ text }) => {
+const MuButton: React.FC<Props> = ({ text, onPress }) => {
   return (
-    <TouchableOpacity style={styles.MuButton}>
+    <TouchableOpacity style={styles.MuButton} onPress={onPress}>
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );

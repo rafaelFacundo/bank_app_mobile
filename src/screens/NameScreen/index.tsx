@@ -7,11 +7,16 @@ import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
 
-const NameScreen: React.FC = () => {
+interface Props {
+  navigation: any;
+}
+
+const NameScreen: React.FC<Props> = ({ navigation }) => {
   const [name, setName] = useState("");
+
   return (
     <Container>
-      <ArrowBackButton />
+      <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
@@ -22,7 +27,15 @@ const NameScreen: React.FC = () => {
           </View>
         </View>
 
-        <MuButton text={"Avançar"} />
+        <MuButton
+          text={"Avançar"}
+          onPress={() =>
+            name &&
+            navigation.navigate("CreateAccountStack", {
+              screen: "EmailScreenCreate",
+            })
+          }
+        />
       </View>
     </Container>
   );

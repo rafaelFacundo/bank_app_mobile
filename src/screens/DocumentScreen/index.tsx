@@ -7,7 +7,11 @@ import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
 
-const DocumentScreen: React.FC = () => {
+interface Props {
+  navigation: any;
+}
+
+const DocumentScreen: React.FC<Props> = ({ navigation }) => {
   const [documentNumber, setDocumentNumber] = useState("");
   const documentMask = (cpfString: string): string => {
     if (cpfString.length === 11) {
@@ -21,7 +25,7 @@ const DocumentScreen: React.FC = () => {
   };
   return (
     <Container>
-      <ArrowBackButton />
+      <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
@@ -39,7 +43,15 @@ const DocumentScreen: React.FC = () => {
           </View>
         </View>
 
-        <MuButton text={"Avançar"} />
+        <MuButton
+          text={"Avançar"}
+          onPress={() =>
+            documentNumber &&
+            navigation.navigate("CreateAccountStack", {
+              screen: "DateScreenCreate",
+            })
+          }
+        />
       </View>
     </Container>
   );

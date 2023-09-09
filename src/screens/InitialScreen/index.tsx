@@ -7,7 +7,11 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
 
-const InitialScreen: React.FC = () => {
+interface Props {
+  navigation: any;
+}
+
+const InitialScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <Container background="#C9EFFF">
       <View style={styles.iconAndCountryButtonDiv}>
@@ -27,7 +31,10 @@ const InitialScreen: React.FC = () => {
         source={WomanInitialScreenImage}
       />
       <View style={styles.beggingButtonDiv}>
-        <MuButton text={"Começar"} />
+        <MuButton
+          text={"Começar"}
+          onPress={() => navigation.navigate("LoginStack")}
+        />
       </View>
 
       <TouchableOpacity style={styles.goToLoginButton}>

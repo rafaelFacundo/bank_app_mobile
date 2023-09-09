@@ -8,7 +8,11 @@ import MuInput from "../../components/MuInput";
 import styles from "./styles";
 import MuButton from "../../components/MuButton";
 
-const AddressScreen: React.FC = () => {
+interface Props {
+  navigation: any;
+}
+
+const AddressScreen: React.FC<Props> = ({ navigation }) => {
   const [zip, setZip] = useState<string>("");
   const [neighbourhood, setNeighbourhood] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -33,7 +37,7 @@ const AddressScreen: React.FC = () => {
 
   return (
     <Container>
-      <ArrowBackButton />
+      <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <QuestionText fontSize={30} question={"Qual o seu CEP ?"} />
@@ -43,7 +47,14 @@ const AddressScreen: React.FC = () => {
           <QuestionText fontSize={30} question={"Qual a sua cidade ?"} />
           <MuInput setState={setCity} state={city} />
         </View>
-        <MuButton text={"Avançar"} />
+        <MuButton
+          text={"Avançar"}
+          onPress={() =>
+            navigation.navigate("CreateAccountStack", {
+              screen: "PasswordScreenCreate",
+            })
+          }
+        />
       </View>
     </Container>
   );

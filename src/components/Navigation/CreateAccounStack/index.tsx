@@ -11,7 +11,10 @@ const signUpStackCreator = createStackNavigator();
 
 const CreateAccountStack = () => {
   return (
-    <signUpStackCreator.Navigator screenOptions={{ headerShown: false }}>
+    <signUpStackCreator.Navigator
+      initialRouteName="NameScreenCreate"
+      screenOptions={{ headerShown: false }}
+    >
       <signUpStackCreator.Screen
         name="NameScreenCreate"
         component={NameScreen}
