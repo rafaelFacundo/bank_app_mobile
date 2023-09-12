@@ -6,12 +6,15 @@ import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
+import { handleNextPage } from "../../utils/navigationUtils";
 
 interface Props {
   navigation: any;
+  route: any;
 }
 
-const DocumentScreen: React.FC<Props> = ({ navigation }) => {
+const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
+  const { type } = route.params;
   const [documentNumber, setDocumentNumber] = useState("");
   const documentMask = (cpfString: string): string => {
     if (cpfString.length === 11) {
@@ -23,6 +26,17 @@ const DocumentScreen: React.FC<Props> = ({ navigation }) => {
     }
     return cpfString;
   };
+  /* const handleNextPage = (operationType: number) => {
+    if (documentNumber && operationType === 0) {
+      navigation.navigate("CreateAccountStack", {
+        screen: "DateScreenCreate",
+      });
+    } else if (documentNumber && operationType === 1) {
+      navigation.navigate("LoginStack", {
+        screen: "EmailScreen",
+      });
+    }
+  }; */
   return (
     <Container>
       <ArrowBackButton onPress={() => navigation.goBack()} />
@@ -47,9 +61,12 @@ const DocumentScreen: React.FC<Props> = ({ navigation }) => {
           text={"Avançar"}
           onPress={() =>
             documentNumber &&
-            navigation.navigate("CreateAccountStack", {
-              screen: "DateScreenCreate",
-            })
+            handleNextPage(
+              type,
+              navigation,
+              ["CreateAccountStack", "LoginStack"],
+              ["DateScreenCreate", "EmailScreen"]
+            )
           }
         />
       </View>

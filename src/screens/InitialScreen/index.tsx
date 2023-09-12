@@ -33,13 +33,21 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
       <View style={styles.beggingButtonDiv}>
         <MuButton
           text={"Começar"}
-          onPress={() => navigation.navigate("LoginStack")}
+          onPress={() =>
+            navigation.navigate("CreateAccountStack", {
+              type: 0,
+            })
+          }
         />
       </View>
 
       <TouchableOpacity
         style={styles.goToLoginButton}
-        onPress={() => navigation.navigate("LoginStack")}
+        onPress={() =>
+          navigation.navigate("LoginStack", {
+            type: 1,
+          })
+        }
       >
         <Text style={styles.goToLoginText}>Entrar na minha conta</Text>
       </TouchableOpacity>
