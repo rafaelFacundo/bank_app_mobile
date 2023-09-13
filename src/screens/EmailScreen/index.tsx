@@ -9,10 +9,12 @@ import styles from "./styles";
 
 interface Props {
   navigation: any;
+  route: any;
 }
 
-const EmailScreen: React.FC<Props> = ({ navigation }) => {
+const EmailScreen: React.FC<Props> = ({ navigation, route }) => {
   const [email, setEmail] = useState("");
+  const { type } = route.params;
   return (
     <Container>
       <ArrowBackButton onPress={() => navigation.goBack()} />
@@ -32,6 +34,7 @@ const EmailScreen: React.FC<Props> = ({ navigation }) => {
             email &&
             navigation.navigate("CreateAccountStack", {
               screen: "DocumentScreenCreate",
+              params: { type },
             })
           }
         />

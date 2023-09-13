@@ -6,7 +6,6 @@ import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
-import { handleNextPage } from "../../utils/navigationUtils";
 
 interface Props {
   navigation: any;
@@ -26,17 +25,20 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
     }
     return cpfString;
   };
-  /* const handleNextPage = (operationType: number) => {
-    if (documentNumber && operationType === 0) {
+
+  const handleNextPage = (operationType: number) => {
+    if (operationType === 0) {
       navigation.navigate("CreateAccountStack", {
         screen: "DateScreenCreate",
+        params: { type },
       });
-    } else if (documentNumber && operationType === 1) {
+    } else {
       navigation.navigate("LoginStack", {
-        screen: "EmailScreen",
+        screen: "PasswordScreen",
+        params: { type },
       });
     }
-  }; */
+  };
   return (
     <Container>
       <ArrowBackButton onPress={() => navigation.goBack()} />
@@ -59,15 +61,7 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <MuButton
           text={"Avançar"}
-          onPress={() =>
-            documentNumber &&
-            handleNextPage(
-              type,
-              navigation,
-              ["CreateAccountStack", "LoginStack"],
-              ["DateScreenCreate", "EmailScreen"]
-            )
-          }
+          onPress={() => documentNumber && handleNextPage(type)}
         />
       </View>
     </Container>

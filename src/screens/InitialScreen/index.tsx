@@ -35,7 +35,8 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
           text={"Começar"}
           onPress={() =>
             navigation.navigate("CreateAccountStack", {
-              type: 0,
+              screen: "NameScreenCreate",
+              params: { type: 0 },
             })
           }
         />
@@ -45,7 +46,8 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
         style={styles.goToLoginButton}
         onPress={() =>
           navigation.navigate("LoginStack", {
-            type: 1,
+            screen: "NameScreen",
+            params: { type: 1 },
           })
         }
       >

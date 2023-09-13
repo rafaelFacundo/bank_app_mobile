@@ -6,7 +6,6 @@ import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
-import { handleNextPage } from "../../utils/navigationUtils";
 
 interface Props {
   navigation: any;
@@ -33,13 +32,10 @@ const NameScreen: React.FC<Props> = ({ navigation, route }) => {
         <MuButton
           text={"Avançar"}
           onPress={() =>
-            name &&
-            handleNextPage(
-              type,
-              navigation,
-              ["CreateAccountStack", "LoginStack"],
-              ["DateScreenCreate", "EmailScreen"]
-            )
+            navigation.navigate("CreateAccountStack", {
+              screen: "EmailScreenCreate",
+              params: { type: type },
+            })
           }
         />
       </View>
