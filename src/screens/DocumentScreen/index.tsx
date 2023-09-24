@@ -33,7 +33,7 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
         params: { type },
       });
     } else {
-      navigation.navigate("LoginStack", {
+      navigation.navigate("CreateAccountStack", {
         screen: "PasswordScreen",
         params: { type },
       });

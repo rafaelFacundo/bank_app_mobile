@@ -17,7 +17,7 @@ const DateScreen: React.FC<Props> = ({ navigation }) => {
   const [dateToShow, setDateToShow] = useState(new Date(Date.now()));
 
   //functions releated to dateTimeInput
-  const onChangeDate = (event, value) => {
+  const onChangeDate = (event: any, value: any) => {
     if (Platform.OS === "android") {
       setShowPicker(false);
     }

@@ -2,7 +2,6 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import InitialScreen from "../../screens/InitialScreen";
-import LoginStack from "./LoginStack";
 import CreateAccountStack from "./CreateAccounStack";
 
 const MainStackCreator = createStackNavigator();
@@ -18,7 +17,6 @@ const Navigation = () => {
           name="InitialScreen"
           component={InitialScreen}
         />
-        <MainStackCreator.Screen name="LoginStack" component={LoginStack} />
         <MainStackCreator.Screen
           name="CreateAccountStack"
           component={CreateAccountStack}

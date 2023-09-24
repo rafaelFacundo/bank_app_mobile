@@ -45,7 +45,7 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
       <TouchableOpacity
         style={styles.goToLoginButton}
         onPress={() =>
-          navigation.navigate("LoginStack", {
+          navigation.navigate("CreateAccountStack", {
             screen: "NameScreen",
             params: { type: 1 },
           })
