@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import InitialScreen from "../../screens/InitialScreen";
 import CreateAccountStack from "./CreateAccounStack";
+import HomeScreen from "../../screens/HomeScreen";
 
 const MainStackCreator = createStackNavigator();
 
@@ -10,7 +11,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <MainStackCreator.Navigator
-        initialRouteName="InitialScreen"
+        initialRouteName="HomeScreen"
         screenOptions={{ headerShown: false }}
       >
         <MainStackCreator.Screen
@@ -21,16 +22,10 @@ const Navigation = () => {
           name="CreateAccountStack"
           component={CreateAccountStack}
         />
-        {/* <MainStackCreator.Screen name="NameScreen" component={NameScreen} />
-      <MainStackCreator.Screen
-        name="DocumentScreen"
-        component={DocumentScreen}
-      />
-      <MainStackCreator.Screen name="EmailScreen" component={EmailScreen} />
-      <MainStackCreator.Screen
-        name="PasswordScreen"
-        component={PasswordScreen}
-      /> */}
+        <MainStackCreator.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+        />
       </MainStackCreator.Navigator>
     </NavigationContainer>
   );
