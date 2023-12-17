@@ -4,24 +4,27 @@ import { styleConstants } from "../../Constants/Constants";
 const styles = StyleSheet.create({
   muInput: {
     width: "100%",
-    height: 50,
-    borderBottomColor: styleConstants.default_backgroundColor,
-    borderBottomWidth: 4,
+    
+    
     fontSize: 20,
     marginBottom: 15,
+    flex: 1
   },
   contentDiv: {
     width: "100%",
-    position: "relative",
-    backgroundColor: "pink"
+    height: 50,
+    flexDirection: "row",
+    justifyContent: "center",
+    borderBottomColor: styleConstants.default_backgroundColor,
+    borderBottomWidth: 4,
+    
   },
   showPasswordIcon: {
-    width: 30,
-    height: 30,
+   width: 30,
+   height: 30
   },
   showPasswordButton: {
-    position: "absolute",
-    right: 0
+    
   }
 });
 

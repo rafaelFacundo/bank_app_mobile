@@ -14,6 +14,7 @@ interface Props {
 
 const MuInput: React.FC<Props> = ({ setState, state, maskFunction, passwordMode }) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [passwordModeState, setPasswordModeState] = useState<boolean|undefined>(passwordMode)
   const handleChangeEvent = (value: string): void => {
     if (maskFunction) {
       const newString = maskFunction(value);
@@ -25,20 +26,23 @@ const MuInput: React.FC<Props> = ({ setState, state, maskFunction, passwordMode 
 
   const handleShowPassword = (): void => {
     setShowPassword(!showPassword);
+    setPasswordModeState(!passwordModeState)
   }
   return (
     <View style={styles.contentDiv}>
+      
       <TextInput
         onChangeText={handleChangeEvent}
         style={styles.muInput}
         defaultValue={state}
-        secureTextEntry={passwordMode}
+        secureTextEntry={passwordModeState}
       />
       {passwordMode && (
         <TouchableOpacity onPress={handleShowPassword} style={styles.showPasswordButton}>
           <Image source={showPassword ? ClaseEyeIcon : OpenEyeIcon} style={styles.showPasswordIcon}/>
         </TouchableOpacity>
       )}
+      
     </View>
     
   );
