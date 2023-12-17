@@ -27,14 +27,16 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
   };
 
   const handleNextPage = (operationType: number) => {
+    console.log("TESTE")
     if (operationType === 0) {
       navigation.navigate("CreateAccountStack", {
         screen: "DateScreenCreate",
         params: { type },
       });
     } else {
+      
       navigation.navigate("CreateAccountStack", {
-        screen: "PasswordScreen",
+        screen: "PasswordScreenCreate",
         params: { type },
       });
     }

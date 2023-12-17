@@ -10,6 +10,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 15,
   },
+  contentDiv: {
+    width: "100%",
+    position: "relative",
+    backgroundColor: "pink"
+  },
+  showPasswordIcon: {
+    width: 30,
+    height: 30,
+  },
+  showPasswordButton: {
+    position: "absolute",
+    right: 0
+  }
 });
 
 export default styles;

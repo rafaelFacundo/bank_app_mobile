@@ -15,6 +15,7 @@ interface Props {
 const EmailScreen: React.FC<Props> = ({ navigation, route }) => {
   const [email, setEmail] = useState("");
   const { type } = route.params;
+
   return (
     <Container>
       <ArrowBackButton onPress={() => navigation.goBack()} />

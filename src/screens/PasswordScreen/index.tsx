@@ -22,7 +22,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation }) => {
             <QuestionText fontSize={30} question={"Qual a sua senha ?"} />
           </View>
           <View style={styles.inputView}>
-            <MuInput setState={setPassword} state={password} />
+            <MuInput setState={setPassword} state={password} passwordMode={true}/>
           </View>
         </View>
         <MuButton text={"Avançar"} onPress={() => navigation.goBack()} />

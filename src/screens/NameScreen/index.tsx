@@ -14,7 +14,8 @@ interface Props {
 
 const NameScreen: React.FC<Props> = ({ navigation, route }) => {
   const [name, setName] = useState("");
-  const { type } = route.params;
+  const {type} = route.params;  /* Receiving the type of action the user is doing - creating account or make login */
+
 
   return (
     <Container>
@@ -28,10 +29,10 @@ const NameScreen: React.FC<Props> = ({ navigation, route }) => {
             <MuInput setState={setName} state={name} />
           </View>
         </View>
-
         <MuButton
           text={"Avançar"}
           onPress={() =>
+            name &&
             navigation.navigate("CreateAccountStack", {
               screen: "EmailScreenCreate",
               params: { type: type },
