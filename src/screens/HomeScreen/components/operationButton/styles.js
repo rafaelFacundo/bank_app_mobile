@@ -1,15 +1,20 @@
 import { StyleSheet } from "react-native";
+import { styleConstants } from "../../../../Constants/Constants";
 
-const styles = StyleSheet.create({
+const styles = (size, backgroundColor) => StyleSheet.create({
     button: {
-        width:  50,
-        height: 50,
-        borderRadius: "50%",
-        backgroundColor: "green"
+        width:  size ? size : 50,
+        height: size ? size : 50,
+        borderRadius: size ? size : 50/2,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: backgroundColor ? backgroundColor : "none"
     },
     image: {
-        width: "100%",
-        height: "100%"
+        width: size ? size : 50,
+        height: size ? size : 50,
+        borderRadius: size ? size/2 : 50/2,
+
     }
 });
 

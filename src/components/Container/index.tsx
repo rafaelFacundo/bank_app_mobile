@@ -1,15 +1,21 @@
 import React from "react";
 import { View } from "react-native";
+import styles from "./styles";
 
 interface Props {
   children?: React.ReactNode;
   background?: string;
+  height?: string | number;
+  width?: string | number;
+  justifyContent?: string
 }
 
-const Container: React.FC<Props> = ({ children, background }) => {
+const Container: React.FC<Props> = ({ children, background, height, width, justifyContent }) => {
+  const stylesWithProps = styles(background, height, width, justifyContent);
+
   return (
     <View
-      style={{ width: "100%", height: "100%", backgroundColor: background }}
+      style={stylesWithProps.containerView}
     >
       {children}
     </View>

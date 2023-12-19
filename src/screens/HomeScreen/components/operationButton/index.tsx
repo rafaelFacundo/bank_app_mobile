@@ -5,18 +5,18 @@ import styles from "./styles";
 
 interface Props {
     iconToShow: ImageSourcePropType;
-    width?: number;
-    height?: number;
+    size?: number;
     onPressFunction: () => void;
+    backgroundColor?: string;
 }
 
-const OperationButton: React.FC<Props> = ({iconToShow, width, height, onPressFunction}) => {
-
-    //const appliedValuesStyle = styles(width, height);
+const OperationButton: React.FC<Props> = ({iconToShow, size, onPressFunction, backgroundColor}) => {
+    //pass parameters to the style 
+    const appliedValuesStyle = styles(size, backgroundColor);
 
     return(
-        <TouchableOpacity onPress={onPressFunction} style={styles.button}>
-            <Image source={iconToShow} style={styles.image}/>
+        <TouchableOpacity onPress={onPressFunction} style={appliedValuesStyle.button}>
+            <Image source={iconToShow} style={appliedValuesStyle.image}/>
         </TouchableOpacity>
     );
 }

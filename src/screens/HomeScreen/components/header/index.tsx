@@ -13,9 +13,13 @@ const Header: React.FC = () => {
 
     return(
         <View style={styles.mainContentView}>
-            <Image source={MuInconWhite} style={styles.MuIconImage}/>
-            <View>
-                <OperationButton iconToShow={UserIcon} onPressFunction={temporaryFunction} width={40} height={40}/>
+            <View style={styles.imageIconView}>
+                <Image source={MuInconWhite} style={styles.MuIconImage}/>
+            </View>
+            <View style={styles.buttonsView}>
+                <OperationButton iconToShow={UserIcon} onPressFunction={temporaryFunction} size={40} />
+                <OperationButton iconToShow={SettingsIcon} onPressFunction={temporaryFunction} size={40} />
+                <OperationButton iconToShow={LogoutIcon} onPressFunction={temporaryFunction} size={40} />
             </View>
         </View>
     )
