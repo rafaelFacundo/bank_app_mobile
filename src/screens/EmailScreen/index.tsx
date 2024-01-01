@@ -14,7 +14,7 @@ interface Props {
 
 const EmailScreen: React.FC<Props> = ({ navigation, route }) => {
   const [email, setEmail] = useState("");
-  const { type } = route.params;
+  const params = route.params;
 
   return (
     <Container>
@@ -35,7 +35,7 @@ const EmailScreen: React.FC<Props> = ({ navigation, route }) => {
             email &&
             navigation.navigate("CreateAccountStack", {
               screen: "DocumentScreenCreate",
-              params: { type },
+              params: { ...params, email: email },
             })
           }
         />

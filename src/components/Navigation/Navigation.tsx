@@ -11,7 +11,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <MainStackCreator.Navigator
-        initialRouteName="HomeScreen"
+        initialRouteName="InitialScreen"
         screenOptions={{ headerShown: false }}
       >
         <MainStackCreator.Screen
@@ -22,10 +22,7 @@ const Navigation = () => {
           name="CreateAccountStack"
           component={CreateAccountStack}
         />
-        <MainStackCreator.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-        />
+        <MainStackCreator.Screen name="HomeScreen" component={HomeScreen} />
       </MainStackCreator.Navigator>
     </NavigationContainer>
   );

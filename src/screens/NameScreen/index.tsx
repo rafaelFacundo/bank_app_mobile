@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
-import { View } from "react-native";
+import { NativeEventEmitter, View } from "react-native";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
@@ -14,8 +14,8 @@ interface Props {
 
 const NameScreen: React.FC<Props> = ({ navigation, route }) => {
   const [name, setName] = useState("");
-  const {type} = route.params;  /* Receiving the type of action the user is doing - creating account or make login */
-
+  const { type } =
+    route.params; /* Receiving the type of action the user is doing - creating account or make login */
 
   return (
     <Container>
@@ -35,7 +35,7 @@ const NameScreen: React.FC<Props> = ({ navigation, route }) => {
             name &&
             navigation.navigate("CreateAccountStack", {
               screen: "EmailScreenCreate",
-              params: { type: type },
+              params: { type: type, name: name },
             })
           }
         />

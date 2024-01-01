@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../../components/Container";
 import MuIcon from "../../../assets/muIcon.png";
 import WomanInitialScreenImage from "../../../assets/initialScrImage.png";

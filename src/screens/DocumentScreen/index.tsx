@@ -13,7 +13,7 @@ interface Props {
 }
 
 const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
-  const { type } = route.params;
+  const params = route.params;
   const [documentNumber, setDocumentNumber] = useState("");
   const documentMask = (cpfString: string): string => {
     if (cpfString.length === 11) {
@@ -27,17 +27,16 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
   };
 
   const handleNextPage = (operationType: number) => {
-    console.log("TESTE")
+    console.log("TESTE");
     if (operationType === 0) {
       navigation.navigate("CreateAccountStack", {
         screen: "DateScreenCreate",
-        params: { type },
+        params: { ...params, document: documentNumber },
       });
     } else {
-      
       navigation.navigate("CreateAccountStack", {
         screen: "PasswordScreenCreate",
-        params: { type },
+        params: { ...params, document: documentNumber },
       });
     }
   };
@@ -63,7 +62,7 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <MuButton
           text={"Avançar"}
-          onPress={() => documentNumber && handleNextPage(type)}
+          onPress={() => documentNumber && handleNextPage(params.type)}
         />
       </View>
     </Container>

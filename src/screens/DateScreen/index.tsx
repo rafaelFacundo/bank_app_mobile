@@ -10,9 +10,11 @@ import DateInput from "../../components/DateInput";
 
 interface Props {
   navigation: any;
+  route: any;
 }
 
-const DateScreen: React.FC<Props> = ({ navigation }) => {
+const DateScreen: React.FC<Props> = ({ navigation, route }) => {
+  const params = route.params;
   const [showPicker, setShowPicker] = useState(false);
   const [dateToShow, setDateToShow] = useState(new Date(Date.now()));
 
@@ -51,6 +53,7 @@ const DateScreen: React.FC<Props> = ({ navigation }) => {
             dateToShow &&
             navigation.navigate("CreateAccountStack", {
               screen: "AddressScreenCreate",
+              params: { ...params, birth_date: dateToShow.toDateString() },
             })
           }
         />

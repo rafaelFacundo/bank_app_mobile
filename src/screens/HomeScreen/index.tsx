@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, Text, View } from "react-native";
 import AccountArrowIcon from "../../../assets/accountArrowIcon.png";
 import TransferMoneyIcon from "../../../assets/transferMoney_icon.png";

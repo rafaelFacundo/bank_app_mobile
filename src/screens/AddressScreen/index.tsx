@@ -10,9 +10,11 @@ import MuButton from "../../components/MuButton";
 
 interface Props {
   navigation: any;
+  route: any;
 }
 
-const AddressScreen: React.FC<Props> = ({ navigation }) => {
+const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
+  const params = route.params;
   const [zip, setZip] = useState<string>("");
   const [neighbourhood, setNeighbourhood] = useState<string>("");
   const [city, setCity] = useState<string>("");
@@ -52,6 +54,7 @@ const AddressScreen: React.FC<Props> = ({ navigation }) => {
           onPress={() =>
             navigation.navigate("CreateAccountStack", {
               screen: "PasswordScreenCreate",
+              params: { ...params, zip, neighbourhood, city },
             })
           }
         />
