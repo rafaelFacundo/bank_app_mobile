@@ -1,7 +1,9 @@
 import React from "react";
-import { View } from "react-native";
-import styles from "./styles";
+import { Image, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import closeDialogIcon from "../../../assets/closeDialog_icon.png";
+import Container from "../Container";
+import styles from "./styles";
 
 interface Props {
   children?: React.ReactNode;
@@ -9,11 +11,13 @@ interface Props {
 
 const Dialog: React.FC<Props> = ({ children }) => {
   return (
-    <View>
-      <View>
-        <TouchableOpacity></TouchableOpacity>
-      </View>
-      <View>{children}</View>
+    <View style={styles.viewContainer}>
+      {/* <View>
+        <TouchableOpacity>
+          <Image source={closeDialogIcon} />
+        </TouchableOpacity>
+      </View> */}
+      <View style={styles.contentView}>{children}</View>
     </View>
   );
 };

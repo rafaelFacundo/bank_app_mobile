@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
-import { View } from "react-native";
+import { Image, Text, View } from "react-native";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
-import styles from "./styles";
 import { NewUserInfomation_type } from "../../types/user";
+import AuthIlustration from "../../../assets/authIlustration.png";
 import api_routes from "../../api/api_routes";
 import API from "../../api";
+import Dialog from "../../components/dialog";
+import styles from "./styles";
 
 interface Props {
   navigation: any;
@@ -17,13 +19,16 @@ interface Props {
 
 const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
   const params = route.params;
-  const [password, setPassword] = useState("");
   const userInfos = params;
   delete userInfos.type;
+
+  const [password, setPassword] = useState("");
+  const [showDialog, setShowDialog] = useState(false);
 
   const makeResquestToCreateAnewUser = async (
     newUserInformations: NewUserInfomation_type
   ) => {
+    setShowDialog(true);
     try {
       const response = await API.post(api_routes.CREATE_NEW_USER, {
         name: newUserInformations.name,
@@ -39,10 +44,23 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
     } catch (error) {
       console.log(error);
     }
+    setShowDialog(false);
   };
 
   return (
     <Container>
+      {showDialog && (
+        <Dialog>
+          <Image
+            source={AuthIlustration}
+            resizeMode={"center"}
+            style={styles.authIlustration}
+          />
+          <Text style={styles.authText}>
+            ESTAMOS PROCESSANDO SEU CADASTRO, AGUARDE
+          </Text>
+        </Dialog>
+      )}
       <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>

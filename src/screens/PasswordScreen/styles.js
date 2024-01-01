@@ -24,6 +24,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  authIlustration: {
+    width: 200,
+    height: 200,
+  },
+  authText: {
+    fontFamily: "Poppins",
+  },
 });
 
 export default styles;
