@@ -1,4 +1,4 @@
-type NewUserInfomation_type = {
+export type NewUserInfomation_type = {
   birth_date: string;
   city: string;
   document: string;
