@@ -2,12 +2,12 @@ import { StyleSheet } from "react-native";
 import { styleConstants } from "../../../../Constants/Constants";
 
 const styles = (
-  size,
-  backgroundColor,
-  marginTop,
-  marginLeft,
-  marginRight,
-  marginBottom
+  size: any,
+  backgroundColor: any,
+  marginTop: any,
+  marginLeft: any,
+  marginRight: any,
+  marginBottom: any
 ) =>
   StyleSheet.create({
     button: {

@@ -8,7 +8,10 @@ interface Props {
 }
 
 const QuestionText: React.FC<Props> = ({ question, fontSize }) => {
-  return <Text style={styles.questionText(fontSize)}>{question}</Text>;
+  const stylesWithParametersApllied = styles(fontSize);
+  return (
+    <Text style={stylesWithParametersApllied.questionText}>{question}</Text>
+  );
 };
 
 export default QuestionText;
