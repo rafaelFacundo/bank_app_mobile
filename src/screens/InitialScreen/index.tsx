@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Container from "../../components/Container";
 import { Picker } from "@react-native-picker/picker";
 import MuIcon from "../../../assets/muIcon.png";
@@ -25,8 +26,7 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
     "Sérvia",
   ];
   const [selectedCountry, setselectedCountry] = useState(countries[0]);
-  const pickerRef = useRef();
-
+  const { t } = useTranslation();
   const temporaryFunction = () => {};
 
   return (
@@ -47,9 +47,7 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
         </View>
       </View>
 
-      <Text style={styles.sloganText}>
-        Um mundo financeiro sem complexidades
-      </Text>
+      <Text style={styles.sloganText}>{t("initial_phrase")}</Text>
       <Image
         resizeMode="stretch"
         style={styles.womanImage}
@@ -57,7 +55,7 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
       />
       <View style={styles.beggingButtonDiv}>
         <MuButton
-          text={"Começar"}
+          text={t("start")}
           onPress={() =>
             navigation.navigate("CreateAccountStack", {
               screen: "NameScreenCreate",
@@ -76,7 +74,7 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
           })
         }
       >
-        <Text style={styles.goToLoginText}>Entrar na minha conta</Text>
+        <Text style={styles.goToLoginText}>{t("make_login")}</Text>
       </TouchableOpacity>
     </Container>
   );
