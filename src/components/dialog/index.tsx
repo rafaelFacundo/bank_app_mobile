@@ -2,7 +2,6 @@ import React from "react";
 import { Image, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import closeDialogIcon from "../../../assets/closeDialog_icon.png";
-import Container from "../Container";
 import styles from "./styles";
 
 interface Props {

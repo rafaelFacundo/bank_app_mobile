@@ -66,6 +66,21 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins",
     fontWeight: "800",
   },
+  selectDropdown: {
+    backgroundColor: "pink",
+    position: "absolute",
+    top: 40,
+    width: "100%",
+    zIndex: 999,
+    flex: 1,
+  },
+  pickerView: {
+    width: "60%",
+    backgroundColor: "rgba(0,0,0,0.3)",
+    borderRadius: 20,
+    overflow: "hidden",
+    justifyContent: "center",
+  },
 });
 
 export default styles;
