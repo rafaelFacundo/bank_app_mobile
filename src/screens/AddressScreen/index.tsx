@@ -18,13 +18,25 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   const [zip, setZip] = useState<string>("");
   const [neighbourhood, setNeighbourhood] = useState<string>("");
   const [city, setCity] = useState<string>("");
+  const [street, setStreet] = useState<string>("");
+  const [houseNumber, setHouseNumber] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
+  const [addresState, setAddressState] = useState<string>("");
 
   useEffect(() => {
     async function takeZipInformations() {
       if (zip.length === 8) {
         try {
           const response = (
-            await axios.get(`https://viacep.com.br/ws/${zip}/json/`)
+            await axios.get(
+              `"https://api.zipcodestack.com/v1/search?codes=${zip}&country=${country}"`,
+              {
+                headers: {
+                  apikey: "AINDA FALTA COLOCAR AQUI",
+                  Accept: "application/json",
+                },
+              }
+            )
           ).data;
 
           setNeighbourhood(response.bairro);
@@ -44,10 +56,21 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
         <View style={styles.questionAndInputView}>
           <QuestionText fontSize={30} question={"Qual o seu CEP ?"} />
           <MuInput setState={setZip} state={zip} />
+          <QuestionText fontSize={30} question={"Qual a sua rua ?"} />
+          <MuInput setState={setStreet} state={street} />
+          <QuestionText
+            fontSize={30}
+            question={"Qual o numero da sua casa ?"}
+          />
+          <MuInput setState={setHouseNumber} state={houseNumber} />
           <QuestionText fontSize={30} question={"Qual o seu bairro ?"} />
           <MuInput setState={setNeighbourhood} state={neighbourhood} />
           <QuestionText fontSize={30} question={"Qual a sua cidade ?"} />
           <MuInput setState={setCity} state={city} />
+          <QuestionText fontSize={30} question={"Qual o seu estado ?"} />
+          <MuInput setState={setAddressState} state={addresState} />
+          <QuestionText fontSize={30} question={"Qual o seu país ?"} />
+          <MuInput setState={setCountry} state={country} />
         </View>
         <MuButton
           text={"Avançar"}
