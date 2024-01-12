@@ -20,27 +20,33 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   const [city, setCity] = useState<string>("");
   const [street, setStreet] = useState<string>("");
   const [houseNumber, setHouseNumber] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
+  const [country, setCountry] = useState<string>("br");
   const [addresState, setAddressState] = useState<string>("");
 
   useEffect(() => {
     async function takeZipInformations() {
+      console.log("ENTREI NA FUNÇÂO DO TAKE ZIP");
+      console.log(zip);
       if (zip.length === 8) {
         try {
           const response = (
             await axios.get(
-              `"https://api.zipcodestack.com/v1/search?codes=${zip}&country=${country}"`,
+              `https://api.zipcodestack.com/v1/search?codes=${zip}&country=${country}`,
               {
                 headers: {
-                  apikey: "AINDA FALTA COLOCAR AQUI",
+                  apikey: "",
                   Accept: "application/json",
                 },
               }
             )
           ).data;
 
-          setNeighbourhood(response.bairro);
-          setCity(response.localidade);
+          console.log("PASSEO PELA REQUISIÇÂO");
+
+          console.log(response.results);
+
+          /* setNeighbourhood(response.bairro);
+          setCity(response.localidade); */
         } catch (error) {
           console.log(error);
         }
@@ -77,7 +83,15 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
           onPress={() =>
             navigation.navigate("CreateAccountStack", {
               screen: "PasswordScreenCreate",
-              params: { ...params, zip, neighbourhood, city },
+              params: {
+                ...params,
+                neighbourhood,
+                city,
+                street,
+                houseNumber,
+                addresState,
+                country,
+              },
             })
           }
         />

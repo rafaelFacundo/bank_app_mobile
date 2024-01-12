@@ -5,5 +5,8 @@ export type NewUserInfomation_type = {
   email: string;
   name: string;
   neighbourhood: string;
-  zip: string;
+  country: string;
+  state: string;
+  houseNumber: string;
+  street: string;
 };

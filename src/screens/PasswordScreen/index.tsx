@@ -38,7 +38,10 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
         birth_date: newUserInformations.birth_date,
         city: newUserInformations.city,
         neighbourhood: newUserInformations.neighbourhood,
-        zip: newUserInformations.zip,
+        country: newUserInformations.country,
+        street: newUserInformations.street,
+        houseNumber: newUserInformations.houseNumber,
+        state: newUserInformations.state,
       });
       console.log(response.data);
     } catch (error) {
