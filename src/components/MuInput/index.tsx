@@ -10,11 +10,32 @@ interface Props {
   state: string;
   maskFunction?: (stringToProcess: string) => string;
   passwordMode?: boolean;
+  marginTop?: number;
+  marginBottom?: number;
+  marginLeft?: number;
+  marginRight?: number;
 }
 
-const MuInput: React.FC<Props> = ({ setState, state, maskFunction, passwordMode }) => {
+const MuInput: React.FC<Props> = ({
+  setState,
+  state,
+  maskFunction,
+  passwordMode,
+  marginBottom,
+  marginLeft,
+  marginRight,
+  marginTop,
+}) => {
+  const styleWithPropsApplied = styles(
+    marginBottom,
+    marginLeft,
+    marginRight,
+    marginTop
+  );
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [passwordModeState, setPasswordModeState] = useState<boolean|undefined>(passwordMode)
+  const [passwordModeState, setPasswordModeState] = useState<
+    boolean | undefined
+  >(passwordMode);
   const handleChangeEvent = (value: string): void => {
     if (maskFunction) {
       const newString = maskFunction(value);
@@ -26,25 +47,28 @@ const MuInput: React.FC<Props> = ({ setState, state, maskFunction, passwordMode 
 
   const handleShowPassword = (): void => {
     setShowPassword(!showPassword);
-    setPasswordModeState(!passwordModeState)
-  }
+    setPasswordModeState(!passwordModeState);
+  };
   return (
-    <View style={styles.contentDiv}>
-      
+    <View style={styleWithPropsApplied.contentDiv}>
       <TextInput
         onChangeText={handleChangeEvent}
-        style={styles.muInput}
+        style={styleWithPropsApplied.muInput}
         defaultValue={state}
         secureTextEntry={passwordModeState}
       />
       {passwordMode && (
-        <TouchableOpacity onPress={handleShowPassword} style={styles.showPasswordButton}>
-          <Image source={showPassword ? ClaseEyeIcon : OpenEyeIcon} style={styles.showPasswordIcon}/>
+        <TouchableOpacity
+          onPress={handleShowPassword}
+          style={styleWithPropsApplied.showPasswordButton}
+        >
+          <Image
+            source={showPassword ? ClaseEyeIcon : OpenEyeIcon}
+            style={styleWithPropsApplied.showPasswordIcon}
+          />
         </TouchableOpacity>
       )}
-      
     </View>
-    
   );
 };
 

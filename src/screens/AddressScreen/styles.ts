@@ -3,10 +3,11 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   inputAndButtonView: {
     width: "100%",
-    height: "85%",
+    height: "100%",
     alignItems: "center",
-    justifyContent: "space-between",
-    paddingBottom: 15,
+    justifyContent: "space-around",
+    paddingBottom: 10,
+    paddingTop: 70,
     position: "absolute",
     bottom: 0,
   },

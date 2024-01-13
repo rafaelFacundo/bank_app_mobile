@@ -6,7 +6,7 @@ export type NewUserInfomation_type = {
   name: string;
   neighbourhood: string;
   country: string;
-  state: string;
+  addresState: string;
   houseNumber: string;
   street: string;
 };

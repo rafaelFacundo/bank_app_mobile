@@ -28,6 +28,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
   const makeResquestToCreateAnewUser = async (
     newUserInformations: NewUserInfomation_type
   ) => {
+    console.log(userInfos);
     setShowDialog(true);
     try {
       const response = await API.post(api_routes.CREATE_NEW_USER, {
@@ -40,8 +41,8 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
         neighbourhood: newUserInformations.neighbourhood,
         country: newUserInformations.country,
         street: newUserInformations.street,
-        houseNumber: newUserInformations.houseNumber,
-        state: newUserInformations.state,
+        house_number: newUserInformations.houseNumber,
+        state: newUserInformations.addresState,
       });
       console.log(response.data);
     } catch (error) {
