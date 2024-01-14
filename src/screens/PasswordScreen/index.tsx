@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
-import { Image, Text, View } from "react-native";
+import { Alert, Image, Text, View } from "react-native";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
@@ -81,9 +81,16 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
         </View>
         <MuButton
           text={"Avançar"}
-          onPress={() =>
-            makeResquestToCreateAnewUser({ ...userInfos, password: password })
-          }
+          onPress={() => {
+            if (password) {
+              makeResquestToCreateAnewUser({
+                ...userInfos,
+                password: password,
+              });
+            } else {
+              Alert.alert("O preenchimento de todos os campos é obrigatório");
+            }
+          }}
         />
       </View>
     </Container>

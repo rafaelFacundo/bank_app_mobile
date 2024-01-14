@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
-import { Platform, View } from "react-native";
+import { Alert, Platform, View } from "react-native";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
@@ -49,13 +49,16 @@ const DateScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <MuButton
           text={"Avançar"}
-          onPress={() =>
-            dateToShow &&
-            navigation.navigate("CreateAccountStack", {
-              screen: "AddressScreenCreate",
-              params: { ...params, birth_date: dateToShow.toDateString() },
-            })
-          }
+          onPress={() => {
+            if (dateToShow) {
+              navigation.navigate("CreateAccountStack", {
+                screen: "AddressScreenCreate",
+                params: { ...params, birth_date: dateToShow.toDateString() },
+              });
+            } else {
+              Alert.alert("O preenchimento de todos os camos é obrgatório");
+            }
+          }}
         />
       </View>
     </Container>

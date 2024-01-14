@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
@@ -62,7 +62,13 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <MuButton
           text={"Avançar"}
-          onPress={() => documentNumber && handleNextPage(params.type)}
+          onPress={() => {
+            if (documentNumber) {
+              handleNextPage(params.type);
+            } else {
+              Alert.alert("O preenchimento de todos os campos é obrigatório");
+            }
+          }}
         />
       </View>
     </Container>

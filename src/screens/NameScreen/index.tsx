@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
-import { NativeEventEmitter, View } from "react-native";
+import { Alert, NativeEventEmitter, View } from "react-native";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
@@ -31,13 +31,16 @@ const NameScreen: React.FC<Props> = ({ navigation, route }) => {
         </View>
         <MuButton
           text={"Avançar"}
-          onPress={() =>
-            name &&
-            navigation.navigate("CreateAccountStack", {
-              screen: "EmailScreenCreate",
-              params: { type: type, name: name },
-            })
-          }
+          onPress={() => {
+            if (name) {
+              navigation.navigate("CreateAccountStack", {
+                screen: "EmailScreenCreate",
+                params: { type: type, name: name },
+              });
+            } else {
+              Alert.alert("O preenchimento de todos os campos é obrigatório");
+            }
+          }}
         />
       </View>
     </Container>

@@ -27,7 +27,6 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
   ];
   const [selectedCountry, setselectedCountry] = useState(countries[0]);
   const { t } = useTranslation();
-  const temporaryFunction = () => {};
 
   return (
     <Container background="#C9EFFF">
