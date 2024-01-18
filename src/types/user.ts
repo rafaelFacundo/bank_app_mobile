@@ -10,3 +10,10 @@ export type NewUserInfomation_type = {
   houseNumber: string;
   street: string;
 };
+
+export type loginUserInformation_type = {
+  document: string;
+  email: string;
+  name: string;
+  password: string;
+};

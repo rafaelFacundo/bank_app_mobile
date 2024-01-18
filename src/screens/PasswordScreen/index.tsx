@@ -5,7 +5,10 @@ import { Alert, Image, Text, View } from "react-native";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
-import { NewUserInfomation_type } from "../../types/user";
+import {
+  NewUserInfomation_type,
+  loginUserInformation_type,
+} from "../../types/user";
 import AuthIlustration from "../../../assets/authIlustration.png";
 import api_routes from "../../api/api_routes";
 import API from "../../api";
@@ -19,7 +22,10 @@ interface Props {
 
 const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
   const params = route.params;
+  const requestType = Object.assign({}, params);
   const userInfos = params;
+  console.log("teste", params);
+  console.log("request ", requestType);
   delete userInfos.type;
 
   const [password, setPassword] = useState("");
@@ -47,8 +53,23 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
       console.log(response.data);
     } catch (error) {
       console.log(error);
+      Alert.alert("Algo de errado aconteceu, por favor tente mais tarde");
     }
     setShowDialog(false);
+  };
+
+  const makeRequestToLogin = async (
+    userInformation: loginUserInformation_type
+  ) => {
+    console.log(userInfos);
+    setShowDialog(true);
+    try {
+      const response = await API.post(api_routes.MAKE_LOGIN, userInformation);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Algo de errado aconteceu, por favor tente mais tarde");
+    }
   };
 
   return (
@@ -82,13 +103,29 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
         <MuButton
           text={"Avançar"}
           onPress={() => {
-            if (password) {
+            console.log(requestType);
+            /* if (password && requestType === 0) {
               makeResquestToCreateAnewUser({
                 ...userInfos,
                 password: password,
               });
+            } else if (password && requestType === 1) {
+              makeRequestToLogin({
+                name: userInfos.name,
+                email: userInfos.email,
+                document: userInfos.document,
+                password: password,
+              });
             } else {
               Alert.alert("O preenchimento de todos os campos é obrigatório");
+            } */
+            if (password) {
+              makeRequestToLogin({
+                name: userInfos.name,
+                email: userInfos.email,
+                document: userInfos.document,
+                password: password,
+              });
             }
           }}
         />
