@@ -4,8 +4,8 @@ import Container from "../../components/Container";
 import { Picker } from "@react-native-picker/picker";
 import MuIcon from "../../../assets/muIcon.png";
 import WomanInitialScreenImage from "../../../assets/initialScrImage.png";
-import ArrowDown from "../../../assets/arrowDown.png";
-import BrazilFlag from "../../../assets/countries/brazil.png";
+import { availableLanguages } from "../../services/translation/availableLanguages";
+import { languageObject } from "../../types/general";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
@@ -15,18 +15,13 @@ interface Props {
 }
 
 const InitialScreen: React.FC<Props> = ({ navigation }) => {
-  const countries = [
-    "Brasil",
-    "México",
-    "Cuba",
-    "Venezuela",
-    "Vietnam",
-    "Coreia do Norte",
-    "Rússia",
-    "Sérvia",
-  ];
-  const [selectedCountry, setselectedCountry] = useState(countries[0]);
   const { t } = useTranslation();
+  const languages: languageObject[] = [];
+  availableLanguages.map((language) => {
+    languages.push({ name: t(`${language.name}`), code: language.code });
+  });
+
+  const [selectedLanguage, setselectedLanguage] = useState(languages[0].name);
 
   return (
     <Container background="#C9EFFF">
@@ -34,13 +29,13 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
         <Image source={MuIcon} style={styles.muIcon} />
         <View style={styles.pickerView}>
           <Picker
-            selectedValue={selectedCountry}
+            selectedValue={selectedLanguage}
             onValueChange={(intemValue: string, _: number): void => {
               setselectedCountry(intemValue);
             }}
           >
-            {countries.map((country) => (
-              <Picker.Item label={country} value={country} key={country} />
+            {languages.map((language) => (
+              <Picker.Item label={language} value={language} key={language} />
             ))}
           </Picker>
         </View>
