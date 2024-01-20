@@ -13,6 +13,7 @@
     "Japanese": "日本語",
     "Chinese": "中国語",
     "French": "フランス語",
-    "Portuguese": "ポルトガル語"
+    "Portuguese": "ポルトガル語",
+    "Unable to change language, try later": "言語を変更できません。後で試してください。"
   }
 }
