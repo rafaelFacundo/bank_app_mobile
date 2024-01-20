@@ -3,6 +3,16 @@
     "Welcome": "Welcome",
     "initial_phrase": "A financial world without complexities",
     "start": "start",
-    "make_login": "make login"
+    "make_login": "make login",
+    "English": "English",
+    "Russian": "Russian",
+    "Spanish": "Spanish",
+    "Korean": "Korean",
+    "Italian": "Italian",
+    "German": "German",
+    "Japanese": "Japanese",
+    "Chinese": "Chinese",
+    "French": "French",
+    "Portuguese": "Portuguese"
   }
 }

@@ -10,4 +10,5 @@ export const availableLanguages: languageObject[] = [
   { name: "Japanese", code: "jp" },
   { name: "Chinese", code: "zh" },
   { name: "French", code: "fr" },
+  { name: "Portuguese", code: "pt" },
 ];

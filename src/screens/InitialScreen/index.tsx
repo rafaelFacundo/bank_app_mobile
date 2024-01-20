@@ -23,12 +23,14 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
 
   const [selectedLanguage, setselectedLanguage] = useState(languages[0].name);
 
+  console.log(languages);
+
   return (
     <Container background="#C9EFFF">
       <View style={styles.iconAndCountryButtonDiv}>
         <Image source={MuIcon} style={styles.muIcon} />
         <View style={styles.pickerView}>
-          <Picker
+          {/* <Picker
             selectedValue={selectedLanguage}
             onValueChange={(intemValue: string, _: number): void => {
               setselectedCountry(intemValue);
@@ -37,7 +39,7 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
             {languages.map((language) => (
               <Picker.Item label={language} value={language} key={language} />
             ))}
-          </Picker>
+          </Picker> */}
         </View>
       </View>
 
