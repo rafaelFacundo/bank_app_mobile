@@ -16,6 +16,7 @@
     "Portuguese": "португальский",
     "Unable to change language, try later": "Не удалось изменить язык, попробуйте позже.",
     "What is the name of your street?": "Как называется ваша улица?",
+    "What is your house number?": "Какой у вас номер дома?",
     "What is the name of your neighbourhood?": "Как называется ваш район?",
     "What is the name of your city?": "Как называется ваш город?",
     "What is the name of your state?": "Как называется ваш штат?",
@@ -24,6 +25,7 @@
     "Enter your document number:": "Введите номер документа:",
     "Enter your email:": "Введите ваш адрес электронной почты:",
     "What is your name?": "Как вас зовут?",
-    "Enter your password:": "Введите ваш пароль:"
+    "Enter your password:": "Введите ваш пароль:",
+    "Next": "Далее"
   }
 }

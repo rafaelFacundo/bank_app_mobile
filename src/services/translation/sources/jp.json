@@ -16,6 +16,7 @@
     "Portuguese": "ポルトガル語",
     "Unable to change language, try later": "言語を変更できません。後で試してください。",
     "What is the name of your street?": "あなたの通りの名前は何ですか？",
+    "What is your house number?": "あなたの住居番号は何ですか？",
     "What is the name of your neighbourhood?": "あなたの近所の名前は何ですか？",
     "What is the name of your city?": "あなたの都市の名前は何ですか？",
     "What is the name of your state?": "あなたの州の名前は何ですか？",
@@ -24,6 +25,7 @@
     "Enter your document number:": "文書番号を入力してください:",
     "Enter your email:": "メールアドレスを入力してください:",
     "What is your name?": "あなたの名前は何ですか？",
-    "Enter your password:": "パスワードを入力してください:"
+    "Enter your password:": "パスワードを入力してください:",
+    "Next": "次へ "
   }
 }

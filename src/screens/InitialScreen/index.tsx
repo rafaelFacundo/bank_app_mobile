@@ -16,13 +16,13 @@ interface Props {
 
 const InitialScreen: React.FC<Props> = ({ navigation }) => {
   const { t, i18n } = useTranslation();
-  const languages: languageObject[] = [];
+  /* const languages: languageObject[] = [];
   availableLanguages.map((language) => {
     languages.push({ name: t(`${language.name}`), code: language.code });
-  });
+  }); */
 
   const [selectedLanguage, setselectedLanguage] = useState<languageObject>(
-    languages[0]
+    availableLanguages[0]
   );
 
   const changeLanguage = async (languageCode: string) => {
@@ -46,10 +46,10 @@ const InitialScreen: React.FC<Props> = ({ navigation }) => {
           <Picker
             selectedValue={selectedLanguage.code}
             onValueChange={(intemValue: string, index: number): void => {
-              setselectedLanguage(languages[index]);
+              setselectedLanguage(availableLanguages[index]);
             }}
           >
-            {languages.map((language) => (
+            {availableLanguages.map((language) => (
               <Picker.Item
                 label={language.name}
                 value={language.code}

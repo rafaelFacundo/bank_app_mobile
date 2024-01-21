@@ -62,7 +62,7 @@ const DateScreen: React.FC<Props> = ({ navigation, route }) => {
         </View>
 
         <MuButton
-          text={"Avançar"}
+          text={t("Next")}
           onPress={() => {
             const todayDateInSting = `${dateToShow.getFullYear()}-${
               dateToShow.getMonth() + 1

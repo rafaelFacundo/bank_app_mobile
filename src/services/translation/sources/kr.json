@@ -16,6 +16,7 @@
     "Portuguese": "포르투갈어",
     "Unable to change language, try later": "언어를 변경할 수 없습니다. 나중에 시도해 보세요.",
     "What is the name of your street?": "당신의 거리 이름은 무엇인가요?",
+    "What is your house number?": "당신의 집 번호는 무엇인가요?",
     "What is the name of your neighbourhood?": "당신 동네 이름은 무엇인가요?",
     "What is the name of your city?": "당신 도시 이름은 무엇인가요?",
     "What is the name of your state?": "당신 주 이름은 무엇인가요?",
@@ -24,6 +25,7 @@
     "Enter your document number:": "문서 번호를 입력하세요:",
     "Enter your email:": "이메일을 입력하세요:",
     "What is your name?": "당신의 이름은 무엇인가요?",
-    "Enter your password:": "비밀번호를 입력하세요:"
+    "Enter your password:": "비밀번호를 입력하세요:",
+    "Next": "다음"
   }
 }

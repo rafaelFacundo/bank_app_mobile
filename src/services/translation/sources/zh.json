@@ -16,6 +16,7 @@
     "Portuguese": "葡萄牙语",
     "Unable to change language, try later": "无法更改语言，请稍后再试。",
     "What is the name of your street?": "你街道的名字是什么？",
+    "What is your house number?": "你的门牌号是什么？",
     "What is the name of your neighbourhood?": "你社区的名字是什么？",
     "What is the name of your city?": "你城市的名字是什么？",
     "What is the name of your state?": "你州的名字是什么？",
@@ -24,6 +25,7 @@
     "Enter your document number:": "输入您的文件号码：",
     "Enter your email:": "输入您的电子邮件：",
     "What is your name?": "你叫什么名字？",
-    "Enter your password:": "输入您的密码："
+    "Enter your password:": "输入您的密码：",
+    "Next": "下一步"
   }
 }

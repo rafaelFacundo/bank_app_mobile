@@ -32,7 +32,7 @@ const EmailScreen: React.FC<Props> = ({ navigation, route }) => {
         </View>
 
         <MuButton
-          text={"Avançar"}
+          text={t("Next")}
           onPress={() => {
             if (email) {
               navigation.navigate("CreateAccountStack", {

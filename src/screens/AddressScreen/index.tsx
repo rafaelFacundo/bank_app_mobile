@@ -61,7 +61,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
           <MuInput setState={setCountry} state={country} />
         </View>
         <MuButton
-          text={"Avançar"}
+          text={t("Next")}
           onPress={() => {
             if (
               city &&

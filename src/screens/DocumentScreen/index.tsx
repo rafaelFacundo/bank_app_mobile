@@ -64,7 +64,7 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
         </View>
 
         <MuButton
-          text={"Avançar"}
+          text={t("Next")}
           onPress={() => {
             if (documentNumber) {
               handleNextPage(params.type);

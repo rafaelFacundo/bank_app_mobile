@@ -16,6 +16,7 @@
     "Portuguese": "Portuguese",
     "Unable to change language, try later": "Unable to change language, try later.",
     "What is the name of your street?": "What is the name of your street?",
+    "What is your house number?": "What is your house number?",
     "What is the name of your neighbourhood?": "What is the name of your neighbourhood?",
     "What is the name of your city?": "What is the name of your city?",
     "What is the name of your state?": "What is the name of your state?",
@@ -24,6 +25,7 @@
     "Enter your document number:": "Enter your document number:",
     "Enter your email:": "Enter your email:",
     "What is your name?": "What is your name?",
-    "Enter your password:": "Enter your password:"
+    "Enter your password:": "Enter your password:",
+    "Next": "Next"
   }
 }

@@ -103,7 +103,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
           </View>
         </View>
         <MuButton
-          text={"Avançar"}
+          text={t("Next")}
           onPress={() => {
             console.log(requestType);
             /* if (password && requestType === 0) {

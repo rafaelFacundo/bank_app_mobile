@@ -16,6 +16,7 @@
     "Portuguese": "Português",
     "Unable to change language, try later": "Não foi possível mudar o idioma, tente mais tarde.",
     "What is the name of your street?": "Qual o nome da sua rua?",
+    "What is your house number?": "Qual é o número da sua casa?",
     "What is the name of your neighbourhood?": "Quando o nome do seu bairro?",
     "What is the name of your city?": "Qual o nome da sua cidade?",
     "What is the name of your state?": "Qual o nome do seu estado?",
@@ -24,6 +25,7 @@
     "Enter your document number:": "Digite o número do seu documento:",
     "Enter your email:": "Digite o seu e-mail:",
     "What is your name?": "Qual é o seu nome?",
-    "Enter your password:": "Digite a sua senha:"
+    "Enter your password:": "Digite a sua senha:",
+    "Next": "Próximo"
   }
 }

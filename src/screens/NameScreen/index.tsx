@@ -32,7 +32,7 @@ const NameScreen: React.FC<Props> = ({ navigation, route }) => {
           </View>
         </View>
         <MuButton
-          text={"Avançar"}
+          text={t("Next")}
           onPress={() => {
             if (name) {
               navigation.navigate("CreateAccountStack", {
