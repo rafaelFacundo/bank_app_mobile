@@ -29,20 +29,35 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
-          <QuestionText fontSize={30} question={"Qual a sua rua ?"} />
+          <QuestionText
+            fontSize={30}
+            question={t("What is the name of your street?")}
+          />
           <MuInput setState={setStreet} state={street} />
           <QuestionText
             fontSize={30}
-            question={"Qual o numero da sua casa ?"}
+            question={t("What is your house number?")}
           />
           <MuInput setState={setHouseNumber} state={houseNumber} />
-          <QuestionText fontSize={30} question={"Qual o seu bairro ?"} />
+          <QuestionText
+            fontSize={30}
+            question={t("What is the name of your neighbourhood?")}
+          />
           <MuInput setState={setNeighbourhood} state={neighbourhood} />
-          <QuestionText fontSize={30} question={"Qual a sua cidade ?"} />
+          <QuestionText
+            fontSize={30}
+            question={t("What is the name of your city?")}
+          />
           <MuInput setState={setCity} state={city} />
-          <QuestionText fontSize={30} question={"Qual o seu estado ?"} />
+          <QuestionText
+            fontSize={30}
+            question={t("What is the name of your state?")}
+          />
           <MuInput setState={setAddressState} state={addresState} />
-          <QuestionText fontSize={30} question={"Qual o seu país ?"} />
+          <QuestionText
+            fontSize={30}
+            question={t("What is the name of your country?")}
+          />
           <MuInput setState={setCountry} state={country} />
         </View>
         <MuButton

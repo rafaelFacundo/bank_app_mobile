@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, Image, Text, View } from "react-native";
@@ -21,6 +22,7 @@ interface Props {
 }
 
 const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
+  const { t } = useTranslation();
   const params = route.params;
   const requestType = Object.assign({}, params);
   const userInfos = params;
@@ -90,7 +92,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
-            <QuestionText fontSize={30} question={"Qual a sua senha ?"} />
+            <QuestionText fontSize={30} question={t("Enter your password:")} />
           </View>
           <View style={styles.inputView}>
             <MuInput

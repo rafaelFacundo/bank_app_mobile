@@ -19,6 +19,11 @@
     "What is the name of your neighbourhood?": "Quando o nome do seu bairro?",
     "What is the name of your city?": "Qual o nome da sua cidade?",
     "What is the name of your state?": "Qual o nome do seu estado?",
-    "What is the name of your country?": "Qual o nome do seu país?"
+    "What is the name of your country?": "Qual o nome do seu país?",
+    "What is your date of birth?": "Qual é a sua data de nascimento?",
+    "Enter your document number:": "Digite o número do seu documento:",
+    "Enter your email:": "Digite o seu e-mail:",
+    "What is your name?": "Qual é o seu nome?",
+    "Enter your password:": "Digite a sua senha:"
   }
 }

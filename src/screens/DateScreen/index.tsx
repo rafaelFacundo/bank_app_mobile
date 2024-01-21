@@ -8,6 +8,7 @@ import MuInput from "../../components/MuInput";
 import MuButton from "../../components/MuButton";
 import styles from "./styles";
 import DateInput from "../../components/DateInput";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   navigation: any;
@@ -18,6 +19,7 @@ const DateScreen: React.FC<Props> = ({ navigation, route }) => {
   const params = route.params;
   const [showPicker, setShowPicker] = useState(false);
   const [dateToShow, setDateToShow] = useState(new Date(Date.now()));
+  const { t } = useTranslation();
   const dateOfToday = new Date();
 
   //functions releated to dateTimeInput
@@ -46,7 +48,7 @@ const DateScreen: React.FC<Props> = ({ navigation, route }) => {
           <View style={styles.questionText}>
             <QuestionText
               fontSize={30}
-              question={"Qual a sua data de nascimento ?"}
+              question={t("What is your date of birth?")}
             />
           </View>
           <View style={styles.inputView}>

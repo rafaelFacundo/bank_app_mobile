@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, View } from "react-native";
@@ -15,6 +16,8 @@ interface Props {
 const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
   const params = route.params;
   const [documentNumber, setDocumentNumber] = useState("");
+  const { t } = useTranslation();
+
   const documentMask = (cpfString: string): string => {
     if (cpfString.length === 11) {
       const newString = `${cpfString.slice(0, 3)}.${cpfString.slice(
@@ -48,7 +51,7 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
           <View style={styles.questionText}>
             <QuestionText
               fontSize={30}
-              question={"Digite o número do seu CPF: "}
+              question={t("Enter your document number:")}
             />
           </View>
           <View style={styles.inputView}>

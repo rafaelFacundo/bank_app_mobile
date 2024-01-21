@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, NativeEventEmitter, View } from "react-native";
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const NameScreen: React.FC<Props> = ({ navigation, route }) => {
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const { type } =
     route.params; /* Receiving the type of action the user is doing - creating account or make login */
@@ -23,7 +25,7 @@ const NameScreen: React.FC<Props> = ({ navigation, route }) => {
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
-            <QuestionText fontSize={30} question={"Qual o seu nome ?"} />
+            <QuestionText fontSize={30} question={t("What is your name?")} />
           </View>
           <View style={styles.inputView}>
             <MuInput setState={setName} state={name} />

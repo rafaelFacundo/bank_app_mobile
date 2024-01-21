@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, View } from "react-native";
@@ -14,6 +15,7 @@ interface Props {
 
 const EmailScreen: React.FC<Props> = ({ navigation, route }) => {
   const [email, setEmail] = useState("");
+  const { t } = useTranslation();
   const params = route.params;
 
   return (
@@ -22,7 +24,7 @@ const EmailScreen: React.FC<Props> = ({ navigation, route }) => {
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <View style={styles.questionText}>
-            <QuestionText fontSize={30} question={"Qual o seu email ?"} />
+            <QuestionText fontSize={30} question={t("Enter your email:")} />
           </View>
           <View style={styles.inputView}>
             <MuInput setState={setEmail} state={email} />
