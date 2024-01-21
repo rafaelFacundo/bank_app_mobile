@@ -14,6 +14,11 @@
     "Chinese": "中国語",
     "French": "フランス語",
     "Portuguese": "ポルトガル語",
-    "Unable to change language, try later": "言語を変更できません。後で試してください。"
+    "Unable to change language, try later": "言語を変更できません。後で試してください。",
+    "What is the name of your street?": "あなたの通りの名前は何ですか？",
+    "What is the name of your neighbourhood?": "あなたの近所の名前は何ですか？",
+    "What is the name of your city?": "あなたの都市の名前は何ですか？",
+    "What is the name of your state?": "あなたの州の名前は何ですか？",
+    "What is the name of your country?": "あなたの国の名前は何ですか？"
   }
 }

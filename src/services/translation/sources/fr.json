@@ -14,6 +14,11 @@
     "Chinese": "Chinois",
     "French": "Français",
     "Portuguese": "Portugais",
-    "Unable to change language, try later": "Impossible de changer de langue, réessayez plus tard."
+    "Unable to change language, try later": "Impossible de changer de langue, réessayez plus tard.",
+    "What is the name of your street?": "Quel est le nom de votre rue ?",
+    "What is the name of your neighbourhood?": "Quel est le nom de votre quartier ?",
+    "What is the name of your city?": "Quel est le nom de votre ville ?",
+    "What is the name of your state?": "Quel est le nom de votre état ?",
+    "What is the name of your country?": "Quel est le nom de votre pays ?"
   }
 }

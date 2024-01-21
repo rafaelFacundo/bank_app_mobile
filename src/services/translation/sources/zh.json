@@ -14,6 +14,11 @@
     "Chinese": "中文",
     "French": "法语",
     "Portuguese": "葡萄牙语",
-    "Unable to change language, try later": "无法更改语言，请稍后再试。"
+    "Unable to change language, try later": "无法更改语言，请稍后再试。",
+    "What is the name of your street?": "你街道的名字是什么？",
+    "What is the name of your neighbourhood?": "你社区的名字是什么？",
+    "What is the name of your city?": "你城市的名字是什么？",
+    "What is the name of your state?": "你州的名字是什么？",
+    "What is the name of your country?": "你国家的名字是什么？"
   }
 }

@@ -14,6 +14,11 @@
     "Chinese": "Китайский",
     "French": "Французский",
     "Portuguese": "португальский",
-    "Unable to change language, try later": "Не удалось изменить язык, попробуйте позже."
+    "Unable to change language, try later": "Не удалось изменить язык, попробуйте позже.",
+    "What is the name of your street?": "Как называется ваша улица?",
+    "What is the name of your neighbourhood?": "Как называется ваш район?",
+    "What is the name of your city?": "Как называется ваш город?",
+    "What is the name of your state?": "Как называется ваш штат?",
+    "What is the name of your country?": "Как называется ваша страна?"
   }
 }

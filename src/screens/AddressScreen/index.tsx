@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, View } from "react-native";
@@ -7,6 +6,7 @@ import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import styles from "./styles";
 import MuButton from "../../components/MuButton";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   navigation: any;
@@ -14,6 +14,7 @@ interface Props {
 }
 
 const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
+  const { t } = useTranslation();
   const params = route.params;
 
   const [neighbourhood, setNeighbourhood] = useState<string>("");
