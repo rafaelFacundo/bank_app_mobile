@@ -40,7 +40,7 @@ const NameScreen: React.FC<Props> = ({ navigation, route }) => {
                 params: { type: type, name: name },
               });
             } else {
-              Alert.alert("O preenchimento de todos os campos é obrigatório");
+              Alert.alert(t("Completing all fields is mandatory"));
             }
           }}
         />

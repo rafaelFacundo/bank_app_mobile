@@ -40,7 +40,7 @@ const EmailScreen: React.FC<Props> = ({ navigation, route }) => {
                 params: { ...params, email: email },
               });
             } else {
-              Alert.alert("O preenchimento de todos os campos é obrigatório");
+              Alert.alert(t("Completing all fields is mandatory"));
             }
           }}
         />

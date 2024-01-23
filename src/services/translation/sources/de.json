@@ -26,6 +26,9 @@
     "Enter your email:": "Geben Sie Ihre E-Mail-Adresse ein:",
     "What is your name?": "Wie ist Ihr Name?",
     "Enter your password:": "Geben Sie Ihr Passwort ein:",
-    "Next": "Weiter"
+    "Next": "Weiter",
+    "You must be of legal age to register": "Sie müssen das gesetzliche Mindestalter haben, um sich zu registrieren.",
+    "Completing all fields is mandatory": "Das Ausfüllen aller Felder ist obligatorisch.",
+    "Something went wrong, please try again later.": "Etwas ist schief gelaufen, bitte versuchen Sie es später erneut."
   }
 }

@@ -69,7 +69,7 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
             if (documentNumber) {
               handleNextPage(params.type);
             } else {
-              Alert.alert("O preenchimento de todos os campos é obrigatório");
+              Alert.alert(t("Completing all fields is mandatory"));
             }
           }}
         />

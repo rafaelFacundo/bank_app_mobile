@@ -26,6 +26,9 @@
     "Enter your email:": "Enter your email:",
     "What is your name?": "What is your name?",
     "Enter your password:": "Enter your password:",
-    "Next": "Next"
+    "Next": "Next",
+    "You must be of legal age to register": "You must be of legal age to register",
+    "Completing all fields is mandatory": "Completing all fields is mandatory",
+    "Something went wrong, please try again later.": "Something went wrong, please try again later."
   }
 }

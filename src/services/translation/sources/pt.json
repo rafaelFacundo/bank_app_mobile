@@ -26,6 +26,9 @@
     "Enter your email:": "Digite o seu e-mail:",
     "What is your name?": "Qual é o seu nome?",
     "Enter your password:": "Digite a sua senha:",
-    "Next": "Próximo"
+    "Next": "Próximo",
+    "You must be of legal age to register": "Você deve ser maior de idade para se cadastrar.",
+    "Completing all fields is mandatory": "O preenchimento de todos os campos é obrigatório.",
+    "Something went wrong, please try again later.": "Algo deu errado, por favor, tente novamente mais tarde."
   }
 }

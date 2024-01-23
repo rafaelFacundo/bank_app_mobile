@@ -55,7 +55,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
       console.log(response.data);
     } catch (error) {
       console.log(error);
-      Alert.alert("Algo de errado aconteceu, por favor tente mais tarde");
+      Alert.alert(t("Something went wrong, please try again later."));
     }
     setShowDialog(false);
   };
@@ -70,7 +70,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
       console.log(response);
     } catch (error) {
       console.log(error);
-      Alert.alert("Algo de errado aconteceu, por favor tente mais tarde");
+      Alert.alert(t("Something went wrong, please try again later."));
     }
   };
 
@@ -119,7 +119,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
                 password: password,
               });
             } else {
-              Alert.alert("O preenchimento de todos os campos é obrigatório");
+              Alert.alert(t("Completing all fields is mandatory"));
             } */
             if (password) {
               makeRequestToLogin({

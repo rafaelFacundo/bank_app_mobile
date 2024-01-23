@@ -81,11 +81,9 @@ const DateScreen: React.FC<Props> = ({ navigation, route }) => {
                 params: { ...params, birth_date: dateToShow.toDateString() },
               });
             } else if (dateToShow && !isThisAgeAllowed) {
-              Alert.alert(
-                "É necessário ser maior de idade para fazer o cadastro"
-              );
+              Alert.alert(t("You must be of legal age to register"));
             } else {
-              Alert.alert("O preenchimento de todos os campos é obrigatório");
+              Alert.alert(t("Completing all fields is mandatory"));
             }
           }}
         />

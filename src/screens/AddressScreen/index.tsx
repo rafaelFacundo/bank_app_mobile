@@ -84,7 +84,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
                 },
               });
             } else {
-              Alert.alert("O preenchimento de todos os campos é obrigatório");
+              Alert.alert(t("Completing all fields is mandatory"));
             }
           }}
         />

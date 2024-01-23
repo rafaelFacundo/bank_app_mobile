@@ -26,6 +26,9 @@
     "Enter your email:": "이메일을 입력하세요:",
     "What is your name?": "당신의 이름은 무엇인가요?",
     "Enter your password:": "비밀번호를 입력하세요:",
-    "Next": "다음"
+    "Next": "다음",
+    "You must be of legal age to register": "등록하려면 성인이어야 합니다. ",
+    "Completing all fields is mandatory": "모든 필드를 작성하는 것이 필수입니다. ",
+    "Something went wrong, please try again later.": "문제가 발생했습니다. 나중에 다시 시도하세요. "
   }
 }
