@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, View } from "react-native";
@@ -23,6 +24,23 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   const [houseNumber, setHouseNumber] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [addresState, setAddressState] = useState<string>("");
+
+  useEffect(() => {
+    async function getCountriesList() {
+      const response = (await axios.get("https://restcountries.com/v3.1/all"))
+        .data;
+
+      return response;
+    }
+
+    try {
+      const data = getCountriesList();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      Alert.alert("There is an error when try to get countries list.");
+    }
+  }, []);
 
   return (
     <Container>
