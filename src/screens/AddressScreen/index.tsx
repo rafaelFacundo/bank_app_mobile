@@ -9,6 +9,7 @@ import MuInput from "../../components/MuInput";
 import styles from "./styles";
 import MuButton from "../../components/MuButton";
 import { useTranslation } from "react-i18next";
+import { ScrollView } from "react-native";
 
 interface Props {
   navigation: any;
@@ -52,7 +53,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   }, [countriesList]);
 
   return (
-    <Container>
+    <ScrollView style={styles.scroll} contentContainerStyle={{ flex: 1 }}>
       <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
@@ -133,7 +134,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
           }}
         />
       </View>
-    </Container>
+    </ScrollView>
   );
 };
 
