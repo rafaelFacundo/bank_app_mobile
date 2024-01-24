@@ -46,15 +46,13 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     }
   }, []);
 
-  useEffect(() => {
-    countriesList.forEach((element: any) => {
-      console.log(element.name.common);
-    });
-  }, [countriesList]);
-
   return (
-    <ScrollView style={styles.scroll} contentContainerStyle={{ flex: 1 }}>
+    <ScrollView
+      style={styles.scroll}
+      contentContainerStyle={styles.scrollContentContainer}
+    >
       <ArrowBackButton onPress={() => navigation.goBack()} />
+
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <QuestionText

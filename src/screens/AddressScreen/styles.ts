@@ -7,10 +7,9 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     justifyContent: "space-around",
+
     paddingBottom: 10,
     paddingTop: 70,
-    position: "absolute",
-    bottom: 0,
   },
   questionText: {
     width: "90%",
@@ -37,11 +36,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 4,
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 20,
   },
   scroll: {
+    flex: 1,
     width: "100%",
-    height: "100%",
-    paddingTop: 50,
+    paddingTop: 10,
+    paddingBottom: 20,
+    position: "relative",
+  },
+  scrollContentContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 24,
+    paddingBottom: 20,
   },
 });
 
