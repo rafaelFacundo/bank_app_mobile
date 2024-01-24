@@ -3,6 +3,7 @@ import axios from "axios";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, View } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import styles from "./styles";
@@ -24,23 +25,31 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   const [houseNumber, setHouseNumber] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [addresState, setAddressState] = useState<string>("");
+  const [countriesList, setCountriesList] = useState<any[]>([]);
 
   useEffect(() => {
     async function getCountriesList() {
-      const response = (await axios.get("https://restcountries.com/v3.1/all"))
-        .data;
-
-      return response;
+      let countriesList: any[] = [];
+      const response = await axios.get("https://restcountries.com/v3.1/all");
+      /* response.data.map((element: any) => {
+        countriesList.push(element);
+      });
+      setCountriesList(countriesList); */
+      setCountriesList(response.data);
     }
-
     try {
-      const data = getCountriesList();
-      console.log(data);
+      getCountriesList();
     } catch (error) {
       console.log(error);
       Alert.alert("There is an error when try to get countries list.");
     }
   }, []);
+
+  useEffect(() => {
+    countriesList.forEach((element: any) => {
+      console.log(element.name.common);
+    });
+  }, [countriesList]);
 
   return (
     <Container>
@@ -76,7 +85,24 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
             fontSize={30}
             question={t("What is the name of your country?")}
           />
-          <MuInput setState={setCountry} state={country} />
+
+          <View style={styles.countriesPickerView}>
+            <Picker
+              style={styles.countriesPicker}
+              selectedValue={country}
+              onValueChange={(itemValue: string, _: number) => {
+                setCountry(itemValue);
+              }}
+            >
+              {countriesList.map((country) => (
+                <Picker.Item
+                  label={`${country.flag} ${country.name.common}`}
+                  value={country.name.common}
+                  key={country.name.common}
+                />
+              ))}
+            </Picker>
+          </View>
         </View>
         <MuButton
           text={t("Next")}
