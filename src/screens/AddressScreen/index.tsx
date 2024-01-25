@@ -52,7 +52,6 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       contentContainerStyle={styles.scrollContentContainer}
     >
       <ArrowBackButton onPress={() => navigation.goBack()} />
-
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
           <QuestionText

@@ -24,11 +24,7 @@ interface Props {
 const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
   const { t } = useTranslation();
   const params = route.params;
-  const requestType = Object.assign({}, params);
   const userInfos = params;
-  console.log("teste", params);
-  console.log("request ", requestType);
-  delete userInfos.type;
 
   const [password, setPassword] = useState("");
   const [showDialog, setShowDialog] = useState(false);
@@ -36,7 +32,6 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
   const makeResquestToCreateAnewUser = async (
     newUserInformations: NewUserInfomation_type
   ) => {
-    console.log(userInfos);
     setShowDialog(true);
     try {
       const response = await API.post(api_routes.CREATE_NEW_USER, {
@@ -53,17 +48,18 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
         state: newUserInformations.addresState,
       });
       console.log(response.data);
+      setShowDialog(false);
     } catch (error) {
+      console.log("KJSDKAUGDAIYGDSuy");
+      setShowDialog(false);
       console.log(error);
       Alert.alert(t("Something went wrong, please try again later."));
     }
-    setShowDialog(false);
   };
 
   const makeRequestToLogin = async (
     userInformation: loginUserInformation_type
   ) => {
-    console.log(userInfos);
     setShowDialog(true);
     try {
       const response = await API.post(api_routes.MAKE_LOGIN, userInformation);
@@ -105,13 +101,13 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
         <MuButton
           text={t("Next")}
           onPress={() => {
-            console.log(requestType);
-            /* if (password && requestType === 0) {
+            if (password && userInfos.type === 0) {
               makeResquestToCreateAnewUser({
                 ...userInfos,
                 password: password,
               });
-            } else if (password && requestType === 1) {
+            } else if (password && userInfos.type === 1) {
+              console.log("going to make login");
               makeRequestToLogin({
                 name: userInfos.name,
                 email: userInfos.email,
@@ -120,14 +116,6 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
               });
             } else {
               Alert.alert(t("Completing all fields is mandatory"));
-            } */
-            if (password) {
-              makeRequestToLogin({
-                name: userInfos.name,
-                email: userInfos.email,
-                document: userInfos.document,
-                password: password,
-              });
             }
           }}
         />
