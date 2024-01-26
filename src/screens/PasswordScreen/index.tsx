@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../store/slices/userSlice";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, Image, Text, View } from "react-native";
@@ -22,7 +24,9 @@ interface Props {
 }
 
 const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
+  const user = useSelector((state: any) => state.user);
   const params = route.params;
   const userInfos = params;
 
@@ -47,10 +51,22 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
         house_number: newUserInformations.houseNumber,
         state: newUserInformations.addresState,
       });
-      console.log(response.data);
+
+      dispatch(
+        setUser({
+          user: {
+            name: response.data.res.user.name,
+            email: response.data.res.user.email,
+            birth_date: response.data.res.user.birth_date,
+            document: response.data.res.user.document,
+            is_active: response.data.res.user.is_active,
+            country: response.data.res.country.name,
+            currency: "" /* response.data.res.user.currency, */,
+          },
+        })
+      );
       setShowDialog(false);
     } catch (error) {
-      console.log("KJSDKAUGDAIYGDSuy");
       setShowDialog(false);
       console.log(error);
       Alert.alert(t("Something went wrong, please try again later."));

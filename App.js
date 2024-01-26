@@ -5,6 +5,8 @@ import useLoadInitialData from "./src/hooks/useLoadInitialData";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from "react";
 import Navigation from "./src/components/Navigation/Navigation";
+import store from "./src/store/store";
+import { Provider } from "react-redux";
 
 export default function App() {
   const { isReady } = useLoadInitialData();
@@ -20,9 +22,11 @@ export default function App() {
   }
 
   return (
-    <View onLayout={onLayoutRootView} style={styles.container}>
-      <Navigation />
-    </View>
+    <Provider store={store}>
+      <View onLayout={onLayoutRootView} style={styles.container}>
+        <Navigation />
+      </View>
+    </Provider>
   );
 }
 
