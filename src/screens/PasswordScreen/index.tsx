@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
@@ -26,7 +26,6 @@ interface Props {
 const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const user = useSelector((state: any) => state.user);
   const params = route.params;
   const userInfos = params;
 
@@ -66,6 +65,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
         })
       );
       setShowDialog(false);
+      navigation.navigate("HomeScreen");
     } catch (error) {
       setShowDialog(false);
       console.log(error);

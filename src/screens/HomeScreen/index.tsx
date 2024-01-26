@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Image, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 import AccountArrowIcon from "../../../assets/accountArrowIcon.png";
 import TransferMoneyIcon from "../../../assets/transferMoney_icon.png";
 import PixIcon from "../../../assets/pix_logo_icon.png";
@@ -15,6 +16,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 const HomeScreen: React.FC = () => {
   const temporaryFunction = () => {};
+  /*  const user = useSelector((state: any) => state.user); */
+  const account = useSelector((state: any) => state.account);
 
   return (
     <Container
@@ -28,7 +31,7 @@ const HomeScreen: React.FC = () => {
             <Text style={styles.accountText}>CONTA </Text>
             <Image source={AccountArrowIcon} style={styles.accountArrowIcon} />
           </View>
-          <Text style={styles.accountTextValue}>R$ 125,25</Text>
+          <Text style={styles.accountTextValue}>R$ {account.amount}</Text>
         </View>
         <View style={styles.buttonsView}>
           <OperationButton
