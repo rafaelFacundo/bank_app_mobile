@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
+import { setAmount } from "../../store/slices/accountSlice";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, Image, Text, View } from "react-native";
@@ -64,6 +65,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
           },
         })
       );
+      dispatch(setAmount({ value: response.data.res.userAccount.amount }));
       setShowDialog(false);
       navigation.navigate("HomeScreen");
     } catch (error) {

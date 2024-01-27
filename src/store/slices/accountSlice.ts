@@ -18,6 +18,6 @@ export const accountSlice = createSlice({
   },
 });
 
-export const { addAmount, decrementAmount } = accountSlice.actions;
+export const { addAmount, decrementAmount, setAmount } = accountSlice.actions;
 
 export default accountSlice.reducer;
