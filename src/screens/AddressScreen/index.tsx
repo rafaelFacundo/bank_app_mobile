@@ -102,6 +102,24 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
             </Picker>
           </View>
 
+          <View style={styles.countriesPickerView}>
+          <Picker
+            style={styles.countriesPicker}
+            selectedValue={selectendCountry.name}
+            onValueChange={(itemValue: string, index: number) => {
+              setSelectendCountry(countriesList[index]);
+            }}
+          >
+            {countriesList.map((country) => (
+              <Picker.Item
+                label={country.name}
+                value={country.name}
+                key={country.code}
+              />
+            ))}
+          </Picker>
+        </View>
+
           
         </View>
         <MuButton
@@ -124,23 +142,6 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
             }
           }}
         /> */}
-        <View style={styles.countriesPickerView}>
-          <Picker
-            style={styles.countriesPicker}
-            selectedValue={selectendCountry.name}
-            onValueChange={(itemValue: string, index: number) => {
-              setSelectendCountry(countriesList[index]);
-            }}
-          >
-            {countriesList.map((country) => (
-              <Picker.Item
-                label={country.name}
-                value={country.name}
-                key={country.code}
-              />
-            ))}
-          </Picker>
-        </View>
       </View>
     </ScrollView>
   );
