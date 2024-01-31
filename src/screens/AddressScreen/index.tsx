@@ -10,33 +10,45 @@ import styles from "./styles";
 import MuButton from "../../components/MuButton";
 import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native";
+import API from "../../api";
+import api_routes from "../../api/api_routes";
 
 interface Props {
   navigation: any;
   route: any;
 }
 
+type CountryType = {
+  id: number;
+  name: string;
+  code: string;
+  currency: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   const { t } = useTranslation();
   const params = route.params;
 
-  const [neighbourhood, setNeighbourhood] = useState<string>("");
   const [city, setCity] = useState<string>("");
-  const [street, setStreet] = useState<string>("");
-  const [houseNumber, setHouseNumber] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
+  const [selectendCountry, setSelectendCountry] = useState<CountryType>({
+    id: 0,
+    name: "",
+    code: "",
+    currency: "",
+    createdAt: "",
+    updatedAt: "",
+  });
+  const [countriesList, setCountriesList] = useState<CountryType[]>([]);
   const [addresState, setAddressState] = useState<string>("");
-  const [countriesList, setCountriesList] = useState<any[]>([]);
 
   useEffect(() => {
     async function getCountriesList() {
       let countriesList: any[] = [];
-      const response = await axios.get("https://restcountries.com/v3.1/all");
-      /* response.data.map((element: any) => {
-        countriesList.push(element);
-      });
-      setCountriesList(countriesList); */
-      setCountriesList(response.data);
+      const response = await API.get(api_routes.GET_ALL_COUNTRIES);
+      setCountriesList(response.data.res);
+      // setCountriesList(response.data);
     }
     try {
       getCountriesList();
@@ -53,36 +65,24 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     >
       <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
-        <View style={styles.questionAndInputView}>
-          <QuestionText
-            fontSize={30}
-            question={t("What is the name of your street?")}
-          />
-          <MuInput setState={setStreet} state={street} />
-          <QuestionText
-            fontSize={30}
-            question={t("What is your house number?")}
-          />
-          <MuInput setState={setHouseNumber} state={houseNumber} />
-          <QuestionText
-            fontSize={30}
-            question={t("What is the name of your neighbourhood?")}
-          />
-          <MuInput setState={setNeighbourhood} state={neighbourhood} />
-          <QuestionText
-            fontSize={30}
-            question={t("What is the name of your city?")}
-          />
-          <MuInput setState={setCity} state={city} />
-          <QuestionText
-            fontSize={30}
-            question={t("What is the name of your state?")}
-          />
-          <MuInput setState={setAddressState} state={addresState} />
-          <QuestionText
-            fontSize={30}
-            question={t("What is the name of your country?")}
-          />
+        {/* <View style={styles.questionAndInputView}>
+          <View style={styles.countriesPickerView}>
+            <Picker
+              style={styles.countriesPicker}
+              selectedValue={country}
+              onValueChange={(itemValue: string, _: number) => {
+                setCountry(itemValue);
+              }}
+            >
+              {countriesList.map((country) => (
+                <Picker.Item
+                  label={`${country.flag} ${country.name.common}`}
+                  value={country.name.common}
+                  key={country.name.common}
+                />
+              ))}
+            </Picker>
+          </View>
 
           <View style={styles.countriesPickerView}>
             <Picker
@@ -101,26 +101,20 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               ))}
             </Picker>
           </View>
+
+          
         </View>
         <MuButton
           text={t("Next")}
           onPress={() => {
-            if (
-              city &&
-              neighbourhood &&
-              country &&
-              addresState &&
-              houseNumber &&
-              street
-            ) {
+            if (city && neighbourhood && country && addresState) {
               navigation.navigate("CreateAccountStack", {
                 screen: "PasswordScreenCreate",
                 params: {
                   ...params,
                   neighbourhood,
                   city,
-                  street,
-                  houseNumber,
+
                   addresState,
                   country,
                 },
@@ -129,7 +123,24 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               Alert.alert(t("Completing all fields is mandatory"));
             }
           }}
-        />
+        /> */}
+        <View style={styles.countriesPickerView}>
+          <Picker
+            style={styles.countriesPicker}
+            selectedValue={selectendCountry.name}
+            onValueChange={(itemValue: string, index: number) => {
+              setSelectendCountry(countriesList[index]);
+            }}
+          >
+            {countriesList.map((country) => (
+              <Picker.Item
+                label={country.name}
+                value={country.name}
+                key={country.code}
+              />
+            ))}
+          </Picker>
+        </View>
       </View>
     </ScrollView>
   );
