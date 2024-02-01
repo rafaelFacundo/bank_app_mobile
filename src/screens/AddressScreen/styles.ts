@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { styleConstants } from "../../Constants/Constants";
 
 const styles = StyleSheet.create({
@@ -28,15 +28,19 @@ const styles = StyleSheet.create({
   countriesPicker: {
     width: "100%",
     height: "100%",
+    backgroundColor: "pink",
   },
   countriesPickerView: {
     width: "100%",
-    height: 50,
+    // height: Platform.OS == "android" ? 50 : "50%",
+    height: "70%",
     borderBottomColor: styleConstants.default_backgroundColor,
     borderBottomWidth: 4,
+    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
+    overflow: "scroll",
   },
   scroll: {
     flex: 1,

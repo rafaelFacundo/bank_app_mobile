@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Platform } from "react-native";
 
 const styles = StyleSheet.create({
   muIcon: {
@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 30,
+    padding: Platform.OS == "android" ? 30 : 20,
+    height: Platform.OS == "ios" ? "20%" : "auto",
   },
   arrowDown: {
     width: 15,
@@ -80,6 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     overflow: "hidden",
     justifyContent: "center",
+    height: Platform.OS == "ios" ? "50%" : "auto",
   },
 });
 

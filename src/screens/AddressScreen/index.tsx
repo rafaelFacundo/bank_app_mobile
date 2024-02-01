@@ -47,6 +47,13 @@ type CityType = {
 const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   const { t } = useTranslation();
   const params = route.params;
+  const subregionInitialValue = {
+    id: 0,
+    name: "no subregion",
+    country: 0,
+    createdAt: "",
+    updatedAt: "",
+  };
 
   const [selectendCountry, setSelectendCountry] = useState<CountryType>({
     id: 0,
@@ -56,13 +63,9 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     createdAt: "",
     updatedAt: "",
   });
-  const [selectedSubregion, setSelectedSubregion] = useState<SubregionType>({
-    id: 0,
-    name: "",
-    country: 0,
-    createdAt: "",
-    updatedAt: "",
-  });
+  const [selectedSubregion, setSelectedSubregion] = useState<SubregionType>(
+    subregionInitialValue
+  );
   const [selectedCity, setSelectedCity] = useState<CityType>({
     id: 0,
     name: "",
@@ -81,6 +84,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       const response = await API.get(api_routes.GET_ALL_COUNTRIES);
       setCountriesList(response.data.res);
       // setCountriesList(response.data);
+      setSelectendCountry(response.data.res[3]);
     }
     try {
       getCountriesList();
@@ -95,13 +99,19 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       const response = await API.get(
         `${api_routes.GET_ALL_SUBREGIONS_FROM_COUNTRY}/${selectendCountry.id}`
       );
-      console.log(response.data.res[0]);
+      let newSubRegionsList = [subregionInitialValue].concat(response.data.res);
+      console.log("subregions response list lenght");
+      newSubRegionsList.forEach((sub) => {
+        console.log(sub.name);
+      });
       setSubregionsList(response.data.res);
+      //setSelectedSubregion(response.data.res);
+
       const response2 = await API.get(
         `${api_routes.GET_ALL_CITIES_FROM_COUNTRY}/${selectendCountry.id}`
       );
-      console.log("++++++++++++++++++++");
-      console.log(response2.data.res[0]);
+
+      setCitiesList(response2.data.res);
     }
 
     try {
@@ -125,6 +135,13 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               selectedValue={selectendCountry.name}
               onValueChange={(itemValue: string, index: number) => {
                 setSelectendCountry(countriesList[index]);
+                console.log("Vou printar as subregions");
+                /* citiesList.forEach((city) => {
+                  console.log(city.subregion);
+                }); */
+                subregionsList.forEach((sub) => {
+                  console.log(sub);
+                });
               }}
             >
               {countriesList.map((country) => (
@@ -137,18 +154,17 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
             </Picker>
           </View>
 
-          <View style={styles.countriesPickerView}>
+          {/*  <View style={styles.countriesPickerView}>
             <Picker
               style={styles.countriesPicker}
               selectedValue={selectedSubregion.name}
               onValueChange={(itemValue: string, index: number) => {
-                setSelectedSubregion(subregionsList[index]);
+                //setSelectedSubregion(subregionsList[index]);
                 console.log(itemValue);
                 const subregionId = itemValue ? Number(itemValue) : null;
-                const filteredCitiesBySubregion = citiesList.filter(
-                  (city) => city.subregion === subregionId
-                );
-                setFilteredCitiesList(filteredCitiesBySubregion);
+                // const filteredCitiesBySubregion = citiesList.filter(
+                //   (city) => city.subregion === subregionId
+                // );
               }}
             >
               {subregionsList.map((subregion) => (
@@ -160,9 +176,9 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               ))}
               <Picker.Item label="no subregion" value={null} />
             </Picker>
-          </View>
+          </View> */}
 
-          <View style={styles.countriesPickerView}>
+          {/* <View style={styles.countriesPickerView}>
             <Picker
               style={styles.countriesPicker}
               selectedValue={selectedCity.name}
@@ -178,12 +194,12 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
                 />
               ))}
             </Picker>
-          </View>
+          </View> */}
         </View>
-        <MuButton
+        {/* <MuButton
           text={t("Next")}
           onPress={() => {
-            /* if (city && neighbourhood && country && addresState) {
+            if (city && neighbourhood && country && addresState) {
               navigation.navigate("CreateAccountStack", {
                 screen: "PasswordScreenCreate",
                 params: {
@@ -197,9 +213,9 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               });
             } else {
               Alert.alert(t("Completing all fields is mandatory"));
-            } */
+            }
           }}
-        />
+        /> */}
       </View>
     </ScrollView>
   );
