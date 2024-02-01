@@ -27,11 +27,27 @@ type CountryType = {
   updatedAt: string;
 };
 
+type SubregionType = {
+  id: number;
+  name: string;
+  country: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type CityType = {
+  id: number;
+  name: string;
+  subregion: number | null;
+  country: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
 const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   const { t } = useTranslation();
   const params = route.params;
 
-  const [city, setCity] = useState<string>("");
   const [selectendCountry, setSelectendCountry] = useState<CountryType>({
     id: 0,
     name: "",
@@ -40,12 +56,28 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     createdAt: "",
     updatedAt: "",
   });
+  const [selectedSubregion, setSelectedSubregion] = useState<SubregionType>({
+    id: 0,
+    name: "",
+    country: 0,
+    createdAt: "",
+    updatedAt: "",
+  });
+  const [selectedCity, setSelectedCity] = useState<CityType>({
+    id: 0,
+    name: "",
+    subregion: 0,
+    country: 0,
+    createdAt: "",
+    updatedAt: "",
+  });
   const [countriesList, setCountriesList] = useState<CountryType[]>([]);
-  const [addresState, setAddressState] = useState<string>("");
+  const [subregionsList, setSubregionsList] = useState<SubregionType[]>([]);
+  const [citiesList, setCitiesList] = useState<CityType[]>([]);
+  const [filteredCitiesList, setFilteredCitiesList] = useState<CityType[]>([]);
 
   useEffect(() => {
     async function getCountriesList() {
-      let countriesList: any[] = [];
       const response = await API.get(api_routes.GET_ALL_COUNTRIES);
       setCountriesList(response.data.res);
       // setCountriesList(response.data);
@@ -58,6 +90,27 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     }
   }, []);
 
+  useEffect(() => {
+    async function getSubregionsAndCitiesByCountry() {
+      const response = await API.get(
+        `${api_routes.GET_ALL_SUBREGIONS_FROM_COUNTRY}/${selectendCountry.id}`
+      );
+      console.log(response.data.res[0]);
+      setSubregionsList(response.data.res);
+      const response2 = await API.get(
+        `${api_routes.GET_ALL_CITIES_FROM_COUNTRY}/${selectendCountry.id}`
+      );
+      console.log("++++++++++++++++++++");
+      console.log(response2.data.res[0]);
+    }
+
+    try {
+      getSubregionsAndCitiesByCountry();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [selectendCountry]);
+
   return (
     <ScrollView
       style={styles.scroll}
@@ -65,20 +118,20 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     >
       <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
-        {/* <View style={styles.questionAndInputView}>
+        <View style={styles.questionAndInputView}>
           <View style={styles.countriesPickerView}>
             <Picker
               style={styles.countriesPicker}
-              selectedValue={country}
-              onValueChange={(itemValue: string, _: number) => {
-                setCountry(itemValue);
+              selectedValue={selectendCountry.name}
+              onValueChange={(itemValue: string, index: number) => {
+                setSelectendCountry(countriesList[index]);
               }}
             >
               {countriesList.map((country) => (
                 <Picker.Item
-                  label={`${country.flag} ${country.name.common}`}
-                  value={country.name.common}
-                  key={country.name.common}
+                  label={country.name}
+                  value={country.name}
+                  key={country.code}
                 />
               ))}
             </Picker>
@@ -87,45 +140,50 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
           <View style={styles.countriesPickerView}>
             <Picker
               style={styles.countriesPicker}
-              selectedValue={country}
-              onValueChange={(itemValue: string, _: number) => {
-                setCountry(itemValue);
+              selectedValue={selectedSubregion.name}
+              onValueChange={(itemValue: string, index: number) => {
+                setSelectedSubregion(subregionsList[index]);
+                console.log(itemValue);
+                const subregionId = itemValue ? Number(itemValue) : null;
+                const filteredCitiesBySubregion = citiesList.filter(
+                  (city) => city.subregion === subregionId
+                );
+                setFilteredCitiesList(filteredCitiesBySubregion);
               }}
             >
-              {countriesList.map((country) => (
+              {subregionsList.map((subregion) => (
                 <Picker.Item
-                  label={`${country.flag} ${country.name.common}`}
-                  value={country.name.common}
-                  key={country.name.common}
+                  label={`${subregion.name}`}
+                  value={subregion.id}
+                  key={subregion.name}
                 />
               ))}
+              <Picker.Item label="no subregion" value={null} />
             </Picker>
           </View>
 
           <View style={styles.countriesPickerView}>
-          <Picker
-            style={styles.countriesPicker}
-            selectedValue={selectendCountry.name}
-            onValueChange={(itemValue: string, index: number) => {
-              setSelectendCountry(countriesList[index]);
-            }}
-          >
-            {countriesList.map((country) => (
-              <Picker.Item
-                label={country.name}
-                value={country.name}
-                key={country.code}
-              />
-            ))}
-          </Picker>
-        </View>
-
-          
+            <Picker
+              style={styles.countriesPicker}
+              selectedValue={selectedCity.name}
+              onValueChange={(itemValue: string, index: number) => {
+                setSelectedCity(filteredCitiesList[index]);
+              }}
+            >
+              {filteredCitiesList.map((city) => (
+                <Picker.Item
+                  label={`${city.name}`}
+                  value={city.name}
+                  key={city.name}
+                />
+              ))}
+            </Picker>
+          </View>
         </View>
         <MuButton
           text={t("Next")}
           onPress={() => {
-            if (city && neighbourhood && country && addresState) {
+            /* if (city && neighbourhood && country && addresState) {
               navigation.navigate("CreateAccountStack", {
                 screen: "PasswordScreenCreate",
                 params: {
@@ -139,9 +197,9 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               });
             } else {
               Alert.alert(t("Completing all fields is mandatory"));
-            }
+            } */
           }}
-        /> */}
+        />
       </View>
     </ScrollView>
   );
