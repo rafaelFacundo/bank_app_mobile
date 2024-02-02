@@ -28,7 +28,7 @@ type CountryType = {
 };
 
 type SubregionType = {
-  id: number;
+  id: number | null;
   name: string;
   country: number;
   createdAt: string;
@@ -48,7 +48,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   const { t } = useTranslation();
   const params = route.params;
   const subregionInitialValue = {
-    id: 0,
+    id: null,
     name: "no subregion",
     country: 0,
     createdAt: "",
@@ -75,7 +75,9 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     updatedAt: "",
   });
   const [countriesList, setCountriesList] = useState<CountryType[]>([]);
-  const [subregionsList, setSubregionsList] = useState<SubregionType[]>([]);
+  const [subregionsList, setSubregionsList] = useState<SubregionType[]>([
+    subregionInitialValue,
+  ]);
   const [citiesList, setCitiesList] = useState<CityType[]>([]);
   const [filteredCitiesList, setFilteredCitiesList] = useState<CityType[]>([]);
 
@@ -84,7 +86,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       const response = await API.get(api_routes.GET_ALL_COUNTRIES);
       setCountriesList(response.data.res);
       // setCountriesList(response.data);
-      setSelectendCountry(response.data.res[3]);
+      setSelectendCountry(response.data.res[0]);
     }
     try {
       getCountriesList();
@@ -104,8 +106,8 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       newSubRegionsList.forEach((sub) => {
         console.log(sub.name);
       });
-      setSubregionsList(response.data.res);
-      //setSelectedSubregion(response.data.res);
+      setSubregionsList(newSubRegionsList);
+      if (response.data.res) setSelectedSubregion(response.data.res);
 
       const response2 = await API.get(
         `${api_routes.GET_ALL_CITIES_FROM_COUNTRY}/${selectendCountry.id}`
@@ -121,6 +123,10 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     }
   }, [selectendCountry]);
 
+  const filterCitiesList = (subregionId: number | null) => {
+    console.log("REcebi a sub", subregionId);
+  };
+
   return (
     <ScrollView
       style={styles.scroll}
@@ -135,13 +141,6 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               selectedValue={selectendCountry.name}
               onValueChange={(itemValue: string, index: number) => {
                 setSelectendCountry(countriesList[index]);
-                console.log("Vou printar as subregions");
-                /* citiesList.forEach((city) => {
-                  console.log(city.subregion);
-                }); */
-                subregionsList.forEach((sub) => {
-                  console.log(sub);
-                });
               }}
             >
               {countriesList.map((country) => (
@@ -154,29 +153,27 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
             </Picker>
           </View>
 
-          {/*  <View style={styles.countriesPickerView}>
+          <View style={styles.countriesPickerView}>
             <Picker
               style={styles.countriesPicker}
               selectedValue={selectedSubregion.name}
               onValueChange={(itemValue: string, index: number) => {
-                //setSelectedSubregion(subregionsList[index]);
-                console.log(itemValue);
-                const subregionId = itemValue ? Number(itemValue) : null;
-                // const filteredCitiesBySubregion = citiesList.filter(
-                //   (city) => city.subregion === subregionId
-                // );
+                if (itemValue === "no subregion") {
+                  setSelectedSubregion(subregionInitialValue);
+                } else {
+                  setSelectedSubregion(subregionsList[index]);
+                }
               }}
             >
               {subregionsList.map((subregion) => (
                 <Picker.Item
-                  label={`${subregion.name}`}
-                  value={subregion.id}
+                  label={subregion.name}
+                  value={subregion.name}
                   key={subregion.name}
                 />
               ))}
-              <Picker.Item label="no subregion" value={null} />
             </Picker>
-          </View> */}
+          </View>
 
           {/* <View style={styles.countriesPickerView}>
             <Picker
