@@ -1,48 +1,20 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import QuestionText from "../../components/QuestionText";
-import MuInput from "../../components/MuInput";
 import styles from "./styles";
 import MuButton from "../../components/MuButton";
 import { useTranslation } from "react-i18next";
-import { ScrollView } from "react-native";
 import API from "../../api";
 import api_routes from "../../api/api_routes";
+import { CityType, CountryType, SubregionType } from "../../types/adressTypes";
 
 interface Props {
   navigation: any;
   route: any;
 }
-
-type CountryType = {
-  id: number;
-  name: string;
-  code: string;
-  currency: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-type SubregionType = {
-  id: number | null;
-  name: string;
-  country: number;
-  createdAt: string;
-  updatedAt: string;
-};
-
-type CityType = {
-  id: number;
-  name: string;
-  subregion: number | null;
-  country: number;
-  createdAt: string;
-  updatedAt: string;
-};
 
 const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
   const { t } = useTranslation();
@@ -85,7 +57,6 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     async function getCountriesList() {
       const response = await API.get(api_routes.GET_ALL_COUNTRIES);
       setCountriesList(response.data.res);
-      // setCountriesList(response.data);
       setSelectendCountry(response.data.res[0]);
     }
     try {
@@ -102,18 +73,12 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
         `${api_routes.GET_ALL_SUBREGIONS_FROM_COUNTRY}/${selectendCountry.id}`
       );
       let newSubRegionsList = [subregionInitialValue].concat(response.data.res);
-      console.log("subregions response list lenght");
-      newSubRegionsList.forEach((sub) => {
-        console.log(sub.name);
-      });
       setSubregionsList(newSubRegionsList);
       setSelectedSubregion(newSubRegionsList[0]);
       const response2 = await API.get(
         `${api_routes.GET_ALL_CITIES_FROM_COUNTRY}/${selectendCountry.id}`
       );
-
       setSelectedCity(response2.data.res[0]);
-
       setCitiesList(response2.data.res);
     }
 
@@ -137,6 +102,10 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
+          <QuestionText
+            question={t("What is the name of your country?")}
+            fontSize={20}
+          />
           <View style={styles.countriesPickerView}>
             <Picker
               style={styles.countriesPicker}
@@ -154,7 +123,12 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               ))}
             </Picker>
           </View>
-
+        </View>
+        <View style={styles.questionAndInputView}>
+          <QuestionText
+            question={"What is the name of your subregion? "}
+            fontSize={20}
+          />
           <View style={styles.countriesPickerView}>
             <Picker
               style={styles.countriesPicker}
@@ -176,7 +150,12 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               ))}
             </Picker>
           </View>
-
+        </View>
+        <View style={styles.questionAndInputView}>
+          <QuestionText
+            question={t("What is the name of your city?")}
+            fontSize={20}
+          />
           <View style={styles.countriesPickerView}>
             <Picker
               style={styles.countriesPicker}
@@ -195,26 +174,20 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
             </Picker>
           </View>
         </View>
-        {/* <MuButton
+        <MuButton
           text={t("Next")}
-          onPress={() => {
-            if (city && neighbourhood && country && addresState) {
-              navigation.navigate("CreateAccountStack", {
-                screen: "PasswordScreenCreate",
-                params: {
-                  ...params,
-                  neighbourhood,
-                  city,
-
-                  addresState,
-                  country,
-                },
-              });
-            } else {
-              Alert.alert(t("Completing all fields is mandatory"));
-            }
+          onPress={async () => {
+            navigation.navigate("CreateAccountStack", {
+              screen: "PasswordScreenCreate",
+              params: {
+                ...params,
+                city: selectedCity,
+                subregion: selectedSubregion,
+                country: selectendCountry,
+              },
+            });
           }}
-        /> */}
+        />
       </View>
     </Container>
   );

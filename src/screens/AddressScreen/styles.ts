@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
   countriesPicker: {
     width: "100%",
     height: "100%",
-    backgroundColor: "pink",
   },
   countriesPickerView: {
     width: "100%",
@@ -39,7 +38,6 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
     // overflow: "scroll",
   },
   scroll: {
