@@ -107,11 +107,12 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
         console.log(sub.name);
       });
       setSubregionsList(newSubRegionsList);
-      if (response.data.res) setSelectedSubregion(response.data.res);
-
+      setSelectedSubregion(newSubRegionsList[0]);
       const response2 = await API.get(
         `${api_routes.GET_ALL_CITIES_FROM_COUNTRY}/${selectendCountry.id}`
       );
+
+      setSelectedCity(response2.data.res[0]);
 
       setCitiesList(response2.data.res);
     }
@@ -123,15 +124,16 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     }
   }, [selectendCountry]);
 
-  const filterCitiesList = (subregionId: number | null) => {
-    console.log("REcebi a sub", subregionId);
-  };
+  useEffect(() => {
+    const subregionId: number | null = selectedSubregion.id;
+    const citiesListFiltered = citiesList.filter(
+      (city) => city.subregion === subregionId
+    );
+    setFilteredCitiesList(citiesListFiltered);
+  }, [selectedSubregion]);
 
   return (
-    <ScrollView
-      style={styles.scroll}
-      contentContainerStyle={styles.scrollContentContainer}
-    >
+    <Container>
       <ArrowBackButton onPress={() => navigation.goBack()} />
       <View style={styles.inputAndButtonView}>
         <View style={styles.questionAndInputView}>
@@ -175,7 +177,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
             </Picker>
           </View>
 
-          {/* <View style={styles.countriesPickerView}>
+          <View style={styles.countriesPickerView}>
             <Picker
               style={styles.countriesPicker}
               selectedValue={selectedCity.name}
@@ -191,7 +193,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
                 />
               ))}
             </Picker>
-          </View> */}
+          </View>
         </View>
         {/* <MuButton
           text={t("Next")}
@@ -214,7 +216,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
           }}
         /> */}
       </View>
-    </ScrollView>
+    </Container>
   );
 };
 

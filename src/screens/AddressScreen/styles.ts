@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
   countriesPickerView: {
     width: "100%",
     // height: Platform.OS == "android" ? 50 : "50%",
-    height: "70%",
+    height: 100,
     borderBottomColor: styleConstants.default_backgroundColor,
     borderBottomWidth: 4,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
-    overflow: "scroll",
+    // overflow: "scroll",
   },
   scroll: {
     flex: 1,
