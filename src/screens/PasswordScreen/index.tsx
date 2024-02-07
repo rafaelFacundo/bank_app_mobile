@@ -49,19 +49,20 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
         country: newUserInformations.country,
         subregion: newUserInformations.subregion,
       });
+      console.log(response.data);
       dispatch(
         setUser({
           user: {
-            name: response.data.res.user.name,
-            email: response.data.res.user.email,
-            birth_date: response.data.res.user.birth_date,
-            document: response.data.res.user.document,
-            is_active: response.data.res.user.is_active,
+            name: response.data.user.name,
+            email: response.data.user.email,
+            birth_date: response.data.user.birth_date,
+            document: response.data.user.document,
+            is_active: response.data.user.is_active,
           },
         })
       );
-      dispatch(setAmount({ value: response.data.res.userAccount.amount }));
-      dispatch(setAddress(response.data.res.userAddress));
+      dispatch(setAmount({ value: response.data.userAccount.amount }));
+      dispatch(setAddress(response.data.userAddress));
       setShowDialog(false);
       navigation.navigate("HomeScreen");
     } catch (error) {

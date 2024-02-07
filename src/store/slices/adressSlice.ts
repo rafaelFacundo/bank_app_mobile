@@ -13,6 +13,7 @@ export const addressSlice = createSlice({
   },
   reducers: {
     setAddress: (state, action) => {
+      console.log("address slice payload", action.payload);
       state.countryName = action.payload.countryName;
       state.countryId = action.payload.countryId;
       state.countryCurrency = action.payload.countryCurrency;
