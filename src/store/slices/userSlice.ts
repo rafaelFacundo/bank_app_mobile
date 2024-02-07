@@ -8,8 +8,6 @@ export const userSlice = createSlice({
     birth_date: "",
     document: "",
     is_active: false,
-    country: "",
-    currency: "",
   },
   reducers: {
     setUser: (state, action) => {
@@ -17,9 +15,7 @@ export const userSlice = createSlice({
         (state.email = action.payload.user.email),
         (state.birth_date = action.payload.user.birth_date),
         (state.document = action.payload.user.document),
-        (state.is_active = action.payload.user.is_active),
-        (state.country = action.payload.user.country),
-        (state.currency = action.payload.user.currency);
+        (state.is_active = action.payload.user.is_active);
     },
   },
 });

@@ -59,12 +59,12 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       setCountriesList(response.data.res);
       setSelectendCountry(response.data.res[0]);
     }
-    try {
-      getCountriesList();
-    } catch (error) {
-      console.log(error);
+    /* try { */
+    getCountriesList();
+    /* } catch (error) {
+      console.log(error);v
       Alert.alert("There is an error when try to get countries list.");
-    }
+    } */
   }, []);
 
   useEffect(() => {
@@ -75,11 +75,6 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       let newSubRegionsList = [subregionInitialValue].concat(response.data.res);
       setSubregionsList(newSubRegionsList);
       setSelectedSubregion(newSubRegionsList[0]);
-      const response2 = await API.get(
-        `${api_routes.GET_ALL_CITIES_FROM_COUNTRY}/${selectendCountry.id}`
-      );
-      setSelectedCity(response2.data.res[0]);
-      setCitiesList(response2.data.res);
     }
 
     try {
@@ -91,10 +86,24 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
 
   useEffect(() => {
     const subregionId: number | null = selectedSubregion.id;
-    const citiesListFiltered = citiesList.filter(
-      (city) => city.subregion === subregionId
-    );
-    setFilteredCitiesList(citiesListFiltered);
+    async function getCitiesList() {
+      const response = await API.get(
+        `${api_routes.GET_ALL_CITIES_FROM_COUNTRY}/${selectendCountry.id}`
+      );
+      const filteredCitiesList = response.data.res.filter(
+        (city: any) => city.subregion === subregionId
+      );
+      setFilteredCitiesList(filteredCitiesList);
+    }
+
+    if (citiesList.length === 0) {
+      getCitiesList();
+    } else {
+      const citiesListFiltered = citiesList.filter(
+        (city) => city.subregion === subregionId
+      );
+      setFilteredCitiesList(citiesListFiltered);
+    }
   }, [selectedSubregion]);
 
   return (
@@ -181,9 +190,9 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
               screen: "PasswordScreenCreate",
               params: {
                 ...params,
-                city: selectedCity,
-                subregion: selectedSubregion,
-                country: selectendCountry,
+                city: selectedCity.id,
+                subregion: selectedSubregion.id,
+                country: selectendCountry.id,
               },
             });
           }}

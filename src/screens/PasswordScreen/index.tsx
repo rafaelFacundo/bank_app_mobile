@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
 import { setAmount } from "../../store/slices/accountSlice";
+import { setAddress } from "../../store/slices/adressSlice";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
 import { Alert, Image, Text, View } from "react-native";
@@ -41,17 +42,13 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
       const response = await API.post(api_routes.CREATE_NEW_USER, {
         name: newUserInformations.name,
         email: newUserInformations.email,
-        password: password,
+        password: newUserInformations.password,
         document: newUserInformations.document,
         birth_date: newUserInformations.birth_date,
         city: newUserInformations.city,
-        neighbourhood: newUserInformations.neighbourhood,
         country: newUserInformations.country,
-        street: newUserInformations.street,
-        house_number: newUserInformations.houseNumber,
-        state: newUserInformations.addresState,
+        subregion: newUserInformations.subregion,
       });
-
       dispatch(
         setUser({
           user: {
@@ -60,12 +57,11 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
             birth_date: response.data.res.user.birth_date,
             document: response.data.res.user.document,
             is_active: response.data.res.user.is_active,
-            country: response.data.res.country.name,
-            currency: "" /* response.data.res.user.currency, */,
           },
         })
       );
       dispatch(setAmount({ value: response.data.res.userAccount.amount }));
+      dispatch(setAddress(response.data.res.userAddress));
       setShowDialog(false);
       navigation.navigate("HomeScreen");
     } catch (error) {

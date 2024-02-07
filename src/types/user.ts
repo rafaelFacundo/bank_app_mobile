@@ -1,14 +1,12 @@
 export type NewUserInfomation_type = {
-  birth_date: string;
-  city: string;
-  document: string;
-  email: string;
   name: string;
-  neighbourhood: string;
-  country: string;
-  addresState: string;
-  houseNumber: string;
-  street: string;
+  email: string;
+  password: string;
+  birth_date: string;
+  document: string;
+  country: number;
+  subregion: number;
+  city: number;
 };
 
 export type loginUserInformation_type = {
