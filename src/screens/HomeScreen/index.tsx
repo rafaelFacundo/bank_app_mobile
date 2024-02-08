@@ -6,6 +6,7 @@ import TransferMoneyIcon from "../../../assets/transferMoney_icon.png";
 import PixIcon from "../../../assets/pix_logo_icon.png";
 import CellPhoneIcon from "../../../assets/cellPhone_icon.png";
 import CardIcon from "../../../assets/credit_icon.png";
+import ContactsIcon from "../../../assets/contact_icon.png";
 import Container from "../../components/Container";
 import { styleConstants } from "../../Constants/Constants";
 import Header from "./components/header";
@@ -41,37 +42,22 @@ const HomeScreen: React.FC = () => {
             backgroundColor={styleConstants.button_gray_background}
             label={"transferir"}
           />
-          <OperationButton
-            iconToShow={PixIcon}
-            onPressFunction={temporaryFunction}
-            size={70}
-            backgroundColor={styleConstants.button_gray_background}
-            marginLeft={30}
-            label={"Pix"}
-          />
-          <OperationButton
-            iconToShow={CellPhoneIcon}
-            onPressFunction={temporaryFunction}
-            size={70}
-            backgroundColor={styleConstants.button_gray_background}
-            marginLeft={30}
-            label={"recarga"}
-          />
         </View>
         <View style={styles.cardView}>
           <TouchableOpacity style={styles.cardButton}>
-            <Image source={CardIcon} style={styles.cardImage} />
-            <Text style={styles.cardText}>Meus Cartões</Text>
+            <Image source={ContactsIcon} style={styles.cardImage} />
+            <Text style={styles.cardText}>Meus contatos</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.blueLine}></View>
         <View style={styles.creditCardView}>
           <View style={styles.accountTextAndArrowView}>
-            <Text style={styles.accountText}>Cartão de crédito </Text>
+            <Text style={styles.accountText}>Histórico de transferencias </Text>
             <Image source={AccountArrowIcon} style={styles.accountArrowIcon} />
           </View>
-          <Text style={styles.accountTextValue}>Fatura atual</Text>
-          <Text style={styles.accountTextValue}>R$ 125,25</Text>
+          <Text style={styles.accountTextValue}>Última transferencia</Text>
+          <Text style={styles.accountTextValue}>Recebido: R$ 125,25</Text>
+          <Text style={styles.accountTextValue}>De: Jubiscleudo</Text>
         </View>
       </MainContentContainer>
     </Container>

@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 65,
     marginTop: "10%",
+    padding: 5,
   },
   cardButton: {
     width: "100%",
@@ -43,8 +44,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   cardImage: {
-    width: 70,
-    height: 70,
+    width: 40,
+    height: 40,
     resizeMode: "center",
   },
   cardText: {
