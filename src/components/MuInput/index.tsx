@@ -14,6 +14,7 @@ interface Props {
   marginBottom?: number;
   marginLeft?: number;
   marginRight?: number;
+  amountMode?: boolean;
 }
 
 const MuInput: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const MuInput: React.FC<Props> = ({
   marginLeft,
   marginRight,
   marginTop,
+  amountMode,
 }) => {
   const styleWithPropsApplied = styles(
     marginBottom,
@@ -56,6 +58,7 @@ const MuInput: React.FC<Props> = ({
         style={styleWithPropsApplied.muInput}
         defaultValue={state}
         secureTextEntry={passwordModeState}
+        keyboardType={amountMode ? "number-pad" : "default"}
       />
       {passwordMode && (
         <TouchableOpacity

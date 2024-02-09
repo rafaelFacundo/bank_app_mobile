@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import InitialScreen from "../../screens/InitialScreen";
 import CreateAccountStack from "./CreateAccounStack";
 import HomeScreen from "../../screens/HomeScreen";
+import TransferScreen from "../../screens/transferScreen";
 
 const MainStackCreator = createStackNavigator();
 const Navigation = () => {
@@ -15,7 +16,7 @@ const Navigation = () => {
       >
         <MainStackCreator.Screen
           name="InitialScreen"
-          component={InitialScreen}
+          component={TransferScreen}
         />
         <MainStackCreator.Screen
           name="CreateAccountStack"
