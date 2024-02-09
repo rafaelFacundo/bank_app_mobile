@@ -72,7 +72,7 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       const response = await API.get(
         `${api_routes.GET_ALL_SUBREGIONS_FROM_COUNTRY}/${selectendCountry.id}`
       );
-      let newSubRegionsList = [subregionInitialValue].concat(response.data.res);
+      let newSubRegionsList = response.data.res.concat(subregionInitialValue);
       setSubregionsList(newSubRegionsList);
       setSelectedSubregion(newSubRegionsList[0]);
     }
@@ -105,6 +105,12 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
       setFilteredCitiesList(citiesListFiltered);
     }
   }, [selectedSubregion]);
+
+  useEffect(() => {
+    console.log("CHanged");
+    console.log(filteredCitiesList);
+    console.log("+++++++++++++++++++==");
+  }, [filteredCitiesList]);
 
   return (
     <Container>

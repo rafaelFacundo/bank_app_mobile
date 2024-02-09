@@ -10,7 +10,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <MainStackCreator.Navigator
-        initialRouteName="HomeScreen"
+        initialRouteName="InitialScreen"
         screenOptions={{ headerShown: false }}
       >
         <MainStackCreator.Screen

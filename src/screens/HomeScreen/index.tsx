@@ -13,12 +13,13 @@ import Header from "./components/header";
 import MainContentContainer from "./components/mainContentContainer";
 import styles from "./styles";
 import OperationButton from "./components/operationButton";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { State, TouchableOpacity } from "react-native-gesture-handler";
 
 const HomeScreen: React.FC = () => {
   const temporaryFunction = () => {};
   /*  const user = useSelector((state: any) => state.user); */
   const account = useSelector((state: any) => state.account);
+  const address = useSelector((state: any) => state.address);
 
   return (
     <Container
@@ -29,10 +30,12 @@ const HomeScreen: React.FC = () => {
       <MainContentContainer>
         <View style={styles.accountView}>
           <View style={styles.accountTextAndArrowView}>
-            <Text style={styles.accountText}>CONTA </Text>
+            <Text style={styles.accountText}>Account </Text>
             <Image source={AccountArrowIcon} style={styles.accountArrowIcon} />
           </View>
-          <Text style={styles.accountTextValue}>R$ {account.amount}</Text>
+          <Text style={styles.accountTextValue}>
+            {address.countryCurrency}$ {account.amount}
+          </Text>
         </View>
         <View style={styles.buttonsView}>
           <OperationButton
@@ -46,18 +49,18 @@ const HomeScreen: React.FC = () => {
         <View style={styles.cardView}>
           <TouchableOpacity style={styles.cardButton}>
             <Image source={ContactsIcon} style={styles.cardImage} />
-            <Text style={styles.cardText}>Meus contatos</Text>
+            <Text style={styles.cardText}>My Contacts</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.blueLine}></View>
         <View style={styles.creditCardView}>
           <View style={styles.accountTextAndArrowView}>
-            <Text style={styles.accountText}>Histórico de transferencias </Text>
+            <Text style={styles.accountText}>Transfer history </Text>
             <Image source={AccountArrowIcon} style={styles.accountArrowIcon} />
           </View>
-          <Text style={styles.accountTextValue}>Última transferencia</Text>
-          <Text style={styles.accountTextValue}>Recebido: R$ 125,25</Text>
-          <Text style={styles.accountTextValue}>De: Jubiscleudo</Text>
+          <Text style={styles.accountTextValue}>Last transfer</Text>
+          <Text style={styles.accountTextValue}>Received: R$ 125,25</Text>
+          <Text style={styles.accountTextValue}>From: Jubiscleudo</Text>
         </View>
       </MainContentContainer>
     </Container>
