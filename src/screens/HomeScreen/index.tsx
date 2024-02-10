@@ -10,7 +10,7 @@ import ContactsIcon from "../../../assets/contact_icon.png";
 import Container from "../../components/Container";
 import { styleConstants } from "../../Constants/Constants";
 import Header from "./components/header";
-import MainContentContainer from "./components/mainContentContainer";
+import MainContentContainer from "../../components/mainContentContainer";
 import styles from "./styles";
 import OperationButton from "./components/operationButton";
 import { State, TouchableOpacity } from "react-native-gesture-handler";
@@ -34,7 +34,7 @@ const HomeScreen: React.FC = () => {
             <Image source={AccountArrowIcon} style={styles.accountArrowIcon} />
           </View>
           <Text style={styles.accountTextValue}>
-            {address.countryCurrency}$ {account.amount}
+            ${address.countryCurrency} {account.amount}
           </Text>
         </View>
         <View style={styles.buttonsView}>
