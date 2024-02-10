@@ -9,10 +9,13 @@ import MuButton from "../../components/MuButton";
 
 interface Props {
   navigation: any;
+  route: any;
 }
 
-const TransferScreen: React.FC<Props> = ({ navigation }) => {
+const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
+  const contact = route.params.params;
   const [amountToTransfer, setAmountToTransfer] = useState("");
+  const [contactKey, setContactKey] = useState(contact);
 
   return (
     <Container>
@@ -41,7 +44,7 @@ const TransferScreen: React.FC<Props> = ({ navigation }) => {
             />
           </View>
           <View style={styles.inputView}>
-            <MuInput setState={setAmountToTransfer} state={amountToTransfer} />
+            <MuInput setState={setContactKey} state={contactKey} />
           </View>
         </View>
         <View>

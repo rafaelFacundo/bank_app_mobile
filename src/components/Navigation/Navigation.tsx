@@ -6,6 +6,7 @@ import CreateAccountStack from "./CreateAccounStack";
 import HomeScreen from "../../screens/HomeScreen";
 import TransferScreen from "../../screens/transferScreen";
 import UserInfoScreen from "../../screens/userInfoScreen";
+import ContactsScreen from "../../screens/contactsScreen";
 
 const MainStackCreator = createStackNavigator();
 const Navigation = () => {
@@ -31,6 +32,10 @@ const Navigation = () => {
         <MainStackCreator.Screen
           name="TransferScreen"
           component={TransferScreen}
+        />
+        <MainStackCreator.Screen
+          name="ContactScreen"
+          component={ContactsScreen}
         />
       </MainStackCreator.Navigator>
     </NavigationContainer>

@@ -44,14 +44,19 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
         <View style={styles.buttonsView}>
           <OperationButton
             iconToShow={TransferMoneyIcon}
-            onPressFunction={() => navigation.navigate("TransferScreen")}
+            onPressFunction={() =>
+              navigation.navigate("TransferScreen", { params: "" })
+            }
             size={70}
             backgroundColor={styleConstants.button_gray_background}
             label={"transferir"}
           />
         </View>
         <View style={styles.cardView}>
-          <TouchableOpacity style={styles.cardButton}>
+          <TouchableOpacity
+            style={styles.cardButton}
+            onPress={() => navigation.navigate("ContactScreen")}
+          >
             <Image source={ContactsIcon} style={styles.cardImage} />
             <Text style={styles.cardText}>My Contacts</Text>
           </TouchableOpacity>
