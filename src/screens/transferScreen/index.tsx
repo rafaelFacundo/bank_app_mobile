@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import styles from "./styles";
@@ -43,9 +43,15 @@ const TransferScreen: React.FC<Props> = ({ navigation }) => {
           <View style={styles.inputView}>
             <MuInput setState={setAmountToTransfer} state={amountToTransfer} />
           </View>
-
-          <MuButton text={"transferir"} onPress={() => {}} />
         </View>
+        <View>
+          <Text>
+            Este usuário utiliza a moeda EUR, o valor descontado da sua conta
+            após a conversão será de: 100
+          </Text>
+          <Text>Sua moeda vale: EUR 0,5</Text>
+        </View>
+        <MuButton text={"transferir"} onPress={() => {}} />
       </View>
     </Container>
   );
