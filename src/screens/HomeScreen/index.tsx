@@ -15,7 +15,11 @@ import styles from "./styles";
 import OperationButton from "./components/operationButton";
 import { State, TouchableOpacity } from "react-native-gesture-handler";
 
-const HomeScreen: React.FC = () => {
+type Props = {
+  navigation: any;
+};
+
+const HomeScreen: React.FC<Props> = ({ navigation }) => {
   const temporaryFunction = () => {};
   /*  const user = useSelector((state: any) => state.user); */
   const account = useSelector((state: any) => state.account);
@@ -26,7 +30,7 @@ const HomeScreen: React.FC = () => {
       background={styleConstants.default_backgroundColor}
       justifyContent={"space-between"}
     >
-      <Header />
+      <Header navigation={navigation} />
       <MainContentContainer>
         <View style={styles.accountView}>
           <View style={styles.accountTextAndArrowView}>
@@ -40,7 +44,7 @@ const HomeScreen: React.FC = () => {
         <View style={styles.buttonsView}>
           <OperationButton
             iconToShow={TransferMoneyIcon}
-            onPressFunction={temporaryFunction}
+            onPressFunction={() => navigation.navigate("TransferScreen")}
             size={70}
             backgroundColor={styleConstants.button_gray_background}
             label={"transferir"}

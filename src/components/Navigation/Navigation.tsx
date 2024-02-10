@@ -12,18 +12,26 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <MainStackCreator.Navigator
-        initialRouteName="InitialScreen"
+        initialRouteName="HomeScreen"
         screenOptions={{ headerShown: false }}
       >
         <MainStackCreator.Screen
           name="InitialScreen"
-          component={UserInfoScreen}
+          component={InitialScreen}
         />
         <MainStackCreator.Screen
           name="CreateAccountStack"
           component={CreateAccountStack}
         />
         <MainStackCreator.Screen name="HomeScreen" component={HomeScreen} />
+        <MainStackCreator.Screen
+          name="UserInfoScreen"
+          component={UserInfoScreen}
+        />
+        <MainStackCreator.Screen
+          name="TransferScreen"
+          component={TransferScreen}
+        />
       </MainStackCreator.Navigator>
     </NavigationContainer>
   );

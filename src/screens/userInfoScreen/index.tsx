@@ -6,13 +6,22 @@ import MuButton from "../../components/MuButton";
 import { styleConstants } from "../../Constants/Constants";
 import { Image, Text, View } from "react-native";
 import styles from "./styles";
+import ArrowBackButton from "../../components/ArrowBack";
 
-const UserInfoScreen: React.FC<any> = () => {
+type Props = {
+  navigation: any;
+};
+
+const UserInfoScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <Container
       background={styleConstants.default_backgroundColor}
       justifyContent={"flex-end"}
     >
+      <ArrowBackButton
+        onPress={() => navigation.goBack()}
+        arrowColor={"white"}
+      />
       <View style={styles.userImageAndNameView}>
         <Image
           source={UserIcon}
