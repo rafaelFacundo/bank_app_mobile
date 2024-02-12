@@ -6,6 +6,7 @@ const api_routes = {
   GET_ALL_SUBREGIONS_FROM_COUNTRY: "/subregion/all",
   GET_ALL_CITIES_FROM_COUNTRY: "/city/allByCountry",
   CREATE_NEW_USER_KEY: "/key/create/",
+  UPDATE_USER_TRANSFER_KEY: "/key/update/",
 };
 
 export default api_routes;

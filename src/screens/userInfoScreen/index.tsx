@@ -20,24 +20,23 @@ const UserInfoScreen: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
   const key = useSelector((state: any) => state.key.key);
-  console.log("key", key);
 
   const createUserTransferKey = async () => {
-    console.log("AAA");
     const response = await API.post(api_routes.CREATE_NEW_USER_KEY, {
       id: user.id,
     });
-    console.log(response.data.key.key);
+
     dispatch(setKey({ key: response.data.key.key }));
   };
 
-  const updateUserTransferKey = async () => {};
+  const updateUserTransferKey = async () => {
+    console.log("UPDATE");
+    const response = await API.post(api_routes.UPDATE_USER_TRANSFER_KEY, {
+      id: user.id,
+    });
 
-  useEffect(() => {
-    console.log("++++++");
-    console.log(key);
-    console.log("++++++");
-  }, [key]);
+    dispatch(setKey({ key: response.data.key.key }));
+  };
 
   return (
     <Container
