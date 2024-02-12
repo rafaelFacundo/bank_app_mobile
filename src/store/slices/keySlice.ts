@@ -7,7 +7,6 @@ export const keySlice = createSlice({
   },
   reducers: {
     setKey: (state, action) => {
-      console.log(action);
       state.key = action.payload.key;
     },
   },

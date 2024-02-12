@@ -30,12 +30,11 @@ const UserInfoScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   const updateUserTransferKey = async () => {
-    console.log("UPDATE");
     const response = await API.post(api_routes.UPDATE_USER_TRANSFER_KEY, {
       id: user.id,
     });
 
-    dispatch(setKey({ key: response.data.key.key }));
+    dispatch(setKey({ key: response.data.key }));
   };
 
   return (
