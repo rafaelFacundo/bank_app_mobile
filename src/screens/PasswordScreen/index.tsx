@@ -58,6 +58,7 @@ const PasswordScreen: React.FC<Props> = ({ navigation, route }) => {
             birth_date: response.data.user.birth_date,
             document: response.data.user.document,
             is_active: response.data.user.is_active,
+            id: response.data.user.id,
           },
         })
       );
