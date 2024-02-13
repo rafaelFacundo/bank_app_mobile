@@ -66,6 +66,20 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
     }
   }, [contactKey]);
 
+  const makeTransfer = async () => {
+    try {
+      const response = await API.post(api_routes.MAKE_TRANSFER, {
+        userSenderId: 52,
+        userReceiverId: 51,
+        amountToDiscount: parseFloat(amountToTransferAfterConvertion),
+        amountToAdd: parseFloat(amountToTransfer),
+      });
+      console.log(response);
+    } catch (error) {
+      console.log("ERRROR", error);
+    }
+  };
+
   return (
     <Container>
       <ArrowBackButton onPress={() => navigation.goBack()} />
@@ -103,7 +117,12 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
             {amountToTransferAfterConvertion}
           </Text>
         </View>
-        <MuButton text={"transferir"} onPress={() => {}} />
+        <MuButton
+          text={"transferir"}
+          onPress={() => {
+            makeTransfer();
+          }}
+        />
       </View>
     </Container>
   );

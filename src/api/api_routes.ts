@@ -11,6 +11,7 @@ const api_routes = {
   VERIFY_IF_USER_IS_ACTIVE_BY_ID: "/user/verifyById",
   GET_ADDRESS_BY_USER_ID: "/address/getByUserId",
   GET_COUNTRY_CURRENCY_BY_ID: "/countries/getCurrencyById",
+  MAKE_TRANSFER: "/account/transfer/",
 };
 
 export default api_routes;
