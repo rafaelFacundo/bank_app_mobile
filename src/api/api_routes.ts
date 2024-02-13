@@ -7,6 +7,10 @@ const api_routes = {
   GET_ALL_CITIES_FROM_COUNTRY: "/city/allByCountry",
   CREATE_NEW_USER_KEY: "/key/create/",
   UPDATE_USER_TRANSFER_KEY: "/key/update/",
+  SEARCH_USER_BY_TRANSFER_KEY: "/key/findByKey",
+  VERIFY_IF_USER_IS_ACTIVE_BY_ID: "/user/verifyById",
+  GET_ADDRESS_BY_USER_ID: "/address/getByUserId",
+  GET_COUNTRY_CURRENCY_BY_ID: "/countries/getCurrencyById",
 };
 
 export default api_routes;

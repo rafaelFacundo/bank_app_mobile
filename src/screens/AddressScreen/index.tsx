@@ -106,12 +106,6 @@ const AddressScreen: React.FC<Props> = ({ navigation, route }) => {
     }
   }, [selectedSubregion]);
 
-  useEffect(() => {
-    console.log("CHanged");
-    console.log(filteredCitiesList);
-    console.log("+++++++++++++++++++==");
-  }, [filteredCitiesList]);
-
   return (
     <Container>
       <ArrowBackButton onPress={() => navigation.goBack()} />
