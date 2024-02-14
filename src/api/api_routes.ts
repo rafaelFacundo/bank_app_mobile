@@ -12,6 +12,7 @@ const api_routes = {
   GET_ADDRESS_BY_USER_ID: "/address/getByUserId",
   GET_COUNTRY_CURRENCY_BY_ID: "/countries/getCurrencyById",
   MAKE_TRANSFER: "/account/transfer/",
+  SAVE_TRANSACTION: "/transaction/save/",
 };
 
 export default api_routes;

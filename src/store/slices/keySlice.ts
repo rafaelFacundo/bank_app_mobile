@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const keySlice = createSlice({
   name: "key",
   initialState: {
-    key: "fsdfsdfsdf",
+    key: "",
   },
   reducers: {
     setKey: (state, action) => {

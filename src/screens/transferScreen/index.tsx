@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "../../components/Container";
 import ArrowBackButton from "../../components/ArrowBack";
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import QuestionText from "../../components/QuestionText";
 import MuInput from "../../components/MuInput";
 import styles from "./styles";
@@ -9,6 +9,8 @@ import MuButton from "../../components/MuButton";
 import API from "../../api";
 import api_routes from "../../api/api_routes";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { decrementAmount } from "../../store/slices/accountSlice";
 
 interface Props {
   navigation: any;
@@ -17,26 +19,32 @@ interface Props {
 
 const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
   const contact = route?.params?.params || "";
+  const user = useSelector((state: any) => state.user);
+  const address = useSelector((state: any) => state.address);
   const [amountToTransfer, setAmountToTransfer] = useState("");
   const [contactKey, setContactKey] = useState<string>(contact);
   const [receiverUserCurrency, setReceiverUserCurrency] = useState<string>("-");
   const [amountToTransferAfterConvertion, setAmountToTransferAfterConvertion] =
     useState<string>("");
-  const apiKey = "75Xt3xs5Mzt5k1NIJ8PkMjqBK1YDI5sq";
+  const [senderCurrencyValue, setSenderCurrencyValue] = useState(0);
+  const [isUserActive, setIsUserActive] = useState<boolean>(false);
+  const [receiver_userId, setReceiver_userId] = useState(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("enter");
     async function searchUserInDb() {
       const response = await API.get(
         `${api_routes.SEARCH_USER_BY_TRANSFER_KEY}/${contactKey}`
       );
       // console.log(response.data.userId);
       const userId = response.data.userId;
+      setReceiver_userId(userId);
       const userResponse = await API.get(
         `${api_routes.VERIFY_IF_USER_IS_ACTIVE_BY_ID}/${userId}`
       );
       // console.log(userResponse.data);
       if (userResponse.data.is_active === true) {
+        setIsUserActive(true);
         const addressResponse = await API.get(
           `${api_routes.GET_ADDRESS_BY_USER_ID}/${userId}`
         );
@@ -51,30 +59,64 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
         const amount = parseFloat(amountToTransfer);
         console.log(amount);
         const teste = await axios.get(
-          `https://api.currencybeacon.com/v1/convert?api_key=${apiKey}&from=${currency}&to=BRL&amount=${amount}`
+          `https://api.currencybeacon.com/v1/convert?api_key=${apiKey}&from=${currency}&to=${address.countryCurrency}&amount=${amount}`
         );
         console.log(teste.data);
         setReceiverUserCurrency(currency);
         setAmountToTransferAfterConvertion(
           parseFloat(teste.data.response.value).toFixed(2)
         );
+        const senderCurrency_Value = parseFloat(
+          (amount / teste.data.response.value).toFixed(2)
+        );
+        setSenderCurrencyValue(senderCurrency_Value);
       } else {
+        Alert.alert(
+          "The user you want to transfer to is not active, please contact them."
+        );
       }
     }
-    if (contactKey.length === 15) {
+    if (contactKey.length === 15 && amountToTransfer != "") {
       searchUserInDb();
     }
-  }, [contactKey]);
+  }, [contactKey, amountToTransfer]);
 
   const makeTransfer = async () => {
     try {
       const response = await API.post(api_routes.MAKE_TRANSFER, {
-        userSenderId: 52,
-        userReceiverId: 51,
+        userSenderId: user.id,
+        userReceiverId: receiver_userId,
         amountToDiscount: parseFloat(amountToTransferAfterConvertion),
         amountToAdd: parseFloat(amountToTransfer),
       });
-      console.log(response);
+      console.log("response ", response.status);
+      if (response.status === 200) {
+        console.log("ENTREI NO IF");
+        const saveTransactionResponse = await API.post(
+          api_routes.SAVE_TRANSACTION,
+          {
+            sender: user.id,
+            receiver: receiver_userId,
+            amount: amountToTransferAfterConvertion,
+            sender_currency: address.countryCurrency,
+            receiver_currency: receiverUserCurrency,
+            sender_currency_value: senderCurrencyValue,
+          }
+        );
+        console.log(saveTransactionResponse.status);
+        if (saveTransactionResponse.status === 200) {
+          console.log("ENREI NO 2 IF");
+          Alert.alert("Transação feita com sucesso!");
+          setAmountToTransfer("");
+          setContactKey("");
+          setIsUserActive(false);
+          dispatch(
+            decrementAmount({
+              value: parseFloat(amountToTransferAfterConvertion),
+            })
+          );
+        }
+      }
     } catch (error) {
       console.log("ERRROR", error);
     }
@@ -111,16 +153,30 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
           </View>
         </View>
         <View>
-          <Text>
-            Este usuário utiliza a moeda {receiverUserCurrency}, o valor
-            descontado da sua conta após a conversão será de:
-            {amountToTransferAfterConvertion}
-          </Text>
+          {amountToTransfer && isUserActive ? (
+            <Text>
+              Este usuário utiliza a moeda {receiverUserCurrency}, o valor
+              descontado da sua conta após a conversão será de:
+              {amountToTransferAfterConvertion}
+            </Text>
+          ) : (
+            <Text>Por favor preencha todos os campos corretamente</Text>
+          )}
         </View>
+        {isUserActive && (
+          <MuButton
+            text={"Adicionar essa chave aos contatos"}
+            onPress={() => {}}
+          />
+        )}
         <MuButton
           text={"transferir"}
           onPress={() => {
-            makeTransfer();
+            if (amountToTransferAfterConvertion != "" && isUserActive) {
+              makeTransfer();
+            } else {
+              Alert.alert("Preencha os campos corretamente");
+            }
           }}
         />
       </View>

@@ -20,6 +20,8 @@ const UserInfoScreen: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
   const key = useSelector((state: any) => state.key.key);
+  const address = useSelector((state: any) => state.address);
+  const account = useSelector((state: any) => state.account);
 
   const createUserTransferKey = async () => {
     const response = await API.post(api_routes.CREATE_NEW_USER_KEY, {
@@ -90,33 +92,25 @@ const UserInfoScreen: React.FC<Props> = ({ navigation }) => {
         <View style={styles.addressInformationView}>
           <View style={styles.keyAndValueView}>
             <Text style={styles.key}>País:</Text>
-            <Text style={styles.value}>Japão</Text>
+            <Text style={styles.value}>{address.countryName}</Text>
           </View>
           <View style={styles.keyAndValueView}>
             <Text style={styles.key}>Subregião:</Text>
-            <Text style={styles.value}>Tk</Text>
+            <Text style={styles.value}>{address.subregionName}</Text>
           </View>
           <View style={styles.keyAndValueView}>
             <Text style={styles.key}>Cidade:</Text>
-            <Text style={styles.value}>Tóquio</Text>
+            <Text style={styles.value}>{address.cityName}</Text>
           </View>
           <View style={styles.keyAndValueView}>
             <Text style={styles.key}>Moeda:</Text>
-            <Text style={styles.value}>IEN</Text>
+            <Text style={styles.value}>{address.countryCurrency}</Text>
           </View>
         </View>
         <View style={styles.accountInformationsView}>
           <View style={styles.keyAndValueView}>
             <Text style={styles.key}>Valor total na conta:</Text>
-            <Text style={styles.value}>458</Text>
-          </View>
-          <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Total enviado: </Text>
-            <Text style={styles.value}>556</Text>
-          </View>
-          <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Total recebido:</Text>
-            <Text style={styles.value}>458</Text>
+            <Text style={styles.value}>{account.amount}</Text>
           </View>
         </View>
       </MainContentContainer>

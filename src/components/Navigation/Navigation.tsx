@@ -13,7 +13,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <MainStackCreator.Navigator
-        initialRouteName="TransferScreen"
+        initialRouteName="InitialScreen"
         screenOptions={{ headerShown: false }}
       >
         <MainStackCreator.Screen
