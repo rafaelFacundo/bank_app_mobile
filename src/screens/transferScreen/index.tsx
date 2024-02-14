@@ -11,6 +11,7 @@ import api_routes from "../../api/api_routes";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { decrementAmount } from "../../store/slices/accountSlice";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   navigation: any;
@@ -30,6 +31,7 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
   const [isUserActive, setIsUserActive] = useState<boolean>(false);
   const [receiver_userId, setReceiver_userId] = useState(0);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function searchUserInDb() {
@@ -72,7 +74,9 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
         setSenderCurrencyValue(senderCurrency_Value);
       } else {
         Alert.alert(
-          "The user you want to transfer to is not active, please contact them."
+          t(
+            "The user you want to transfer to is not active, please contact them."
+          )
         );
       }
     }
@@ -89,9 +93,7 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
         amountToDiscount: parseFloat(amountToTransferAfterConvertion),
         amountToAdd: parseFloat(amountToTransfer),
       });
-      console.log("response ", response.status);
       if (response.status === 200) {
-        console.log("ENTREI NO IF");
         const saveTransactionResponse = await API.post(
           api_routes.SAVE_TRANSACTION,
           {
@@ -105,8 +107,7 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
         );
         console.log(saveTransactionResponse.status);
         if (saveTransactionResponse.status === 200) {
-          console.log("ENREI NO 2 IF");
-          Alert.alert("Transação feita com sucesso!");
+          Alert.alert(t("Transaction made successfully"));
           setAmountToTransfer("");
           setContactKey("");
           setIsUserActive(false);
@@ -130,7 +131,7 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
           <View style={styles.questionText}>
             <QuestionText
               fontSize={30}
-              question={"Quanto você deseja transferir?"}
+              question={t("How much do you want to transfer?")}
             />
           </View>
           <View style={styles.inputView}>
@@ -145,7 +146,7 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
           <View style={styles.questionText}>
             <QuestionText
               fontSize={30}
-              question={"Digite a chave do destinatário:"}
+              question={t("Enter the receiver's key")}
             />
           </View>
           <View style={styles.inputView}>
@@ -155,19 +156,18 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
         <View>
           {amountToTransfer && isUserActive ? (
             <Text>
-              Este usuário utiliza a moeda {receiverUserCurrency}, o valor
-              descontado da sua conta após a conversão será de:
-              {amountToTransferAfterConvertion}
+              {t("This user uses the currency")} {receiverUserCurrency},{" "}
+              {t(
+                "the amount deducted from your account after conversion will be"
+              )}
+              :{amountToTransferAfterConvertion}
             </Text>
           ) : (
-            <Text>Por favor preencha todos os campos corretamente</Text>
+            <Text>{t("Please fill in all fields correctly")}</Text>
           )}
         </View>
         {isUserActive && (
-          <MuButton
-            text={"Adicionar essa chave aos contatos"}
-            onPress={() => {}}
-          />
+          <MuButton text={t("Add this key to contacts")} onPress={() => {}} />
         )}
         <MuButton
           text={"transferir"}
@@ -175,7 +175,7 @@ const TransferScreen: React.FC<Props> = ({ navigation, route }) => {
             if (amountToTransferAfterConvertion != "" && isUserActive) {
               makeTransfer();
             } else {
-              Alert.alert("Preencha os campos corretamente");
+              Alert.alert(t("Fill in the fields correctly"));
             }
           }}
         />

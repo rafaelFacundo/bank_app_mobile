@@ -7,16 +7,18 @@ import { styleConstants } from "../../Constants/Constants";
 import { Image, Text, View } from "react-native";
 import styles from "./styles";
 import ArrowBackButton from "../../components/ArrowBack";
-import { useSelector, UseDispatch, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setKey } from "../../store/slices/keySlice";
 import API from "../../api";
 import api_routes from "../../api/api_routes";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   navigation: any;
 };
 
 const UserInfoScreen: React.FC<Props> = ({ navigation }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
   const key = useSelector((state: any) => state.key.key);
@@ -60,25 +62,25 @@ const UserInfoScreen: React.FC<Props> = ({ navigation }) => {
       <MainContentContainer>
         <View style={styles.userInformationsView}>
           <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Nome:</Text>
+            <Text style={styles.key}>{t("Name")}:</Text>
             <Text style={styles.value}>{user.name}</Text>
           </View>
 
           <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Data de nascimento:</Text>
+            <Text style={styles.key}>{t("Birth date")}:</Text>
             <Text style={styles.value}>{user.birth_date}</Text>
           </View>
           <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Email: </Text>
+            <Text style={styles.key}>{t("Email")}: </Text>
             <Text style={styles.value}>{user.email}</Text>
           </View>
           <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Chave de transferência:</Text>
+            <Text style={styles.key}>{t("Transfer key")}:</Text>
             <Text style={styles.value}>{key}</Text>
           </View>
           <View style={styles.transferKeyButtonView}>
             <MuButton
-              text={key.key === "" ? "Criar chave" : "Atualizar chave"}
+              text={key.key === "" ? t("Create a key") : t("Update key")}
               onPress={() => {
                 if (key === "") {
                   createUserTransferKey();
@@ -91,25 +93,25 @@ const UserInfoScreen: React.FC<Props> = ({ navigation }) => {
         </View>
         <View style={styles.addressInformationView}>
           <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>País:</Text>
+            <Text style={styles.key}>{t("Country")}:</Text>
             <Text style={styles.value}>{address.countryName}</Text>
           </View>
           <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Subregião:</Text>
+            <Text style={styles.key}>{t("Subregion")}:</Text>
             <Text style={styles.value}>{address.subregionName}</Text>
           </View>
           <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Cidade:</Text>
+            <Text style={styles.key}>{t("City")}:</Text>
             <Text style={styles.value}>{address.cityName}</Text>
           </View>
           <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Moeda:</Text>
+            <Text style={styles.key}>{t("Currency")}:</Text>
             <Text style={styles.value}>{address.countryCurrency}</Text>
           </View>
         </View>
         <View style={styles.accountInformationsView}>
           <View style={styles.keyAndValueView}>
-            <Text style={styles.key}>Valor total na conta:</Text>
+            <Text style={styles.key}>{t("Total amount in account")}:</Text>
             <Text style={styles.value}>{account.amount}</Text>
           </View>
         </View>

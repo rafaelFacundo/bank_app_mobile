@@ -3,9 +3,6 @@ import { Image, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import AccountArrowIcon from "../../../assets/accountArrowIcon.png";
 import TransferMoneyIcon from "../../../assets/transferMoney_icon.png";
-import PixIcon from "../../../assets/pix_logo_icon.png";
-import CellPhoneIcon from "../../../assets/cellPhone_icon.png";
-import CardIcon from "../../../assets/credit_icon.png";
 import ContactsIcon from "../../../assets/contact_icon.png";
 import Container from "../../components/Container";
 import { styleConstants } from "../../Constants/Constants";
@@ -13,14 +10,15 @@ import Header from "./components/header";
 import MainContentContainer from "../../components/mainContentContainer";
 import styles from "./styles";
 import OperationButton from "./components/operationButton";
-import { State, TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   navigation: any;
 };
 
 const HomeScreen: React.FC<Props> = ({ navigation }) => {
-  const temporaryFunction = () => {};
+  const { t } = useTranslation();
   /*  const user = useSelector((state: any) => state.user); */
   const account = useSelector((state: any) => state.account);
   const address = useSelector((state: any) => state.address);
@@ -34,7 +32,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
       <MainContentContainer>
         <View style={styles.accountView}>
           <View style={styles.accountTextAndArrowView}>
-            <Text style={styles.accountText}>Account </Text>
+            <Text style={styles.accountText}>{t("Account")} </Text>
             <Image source={AccountArrowIcon} style={styles.accountArrowIcon} />
           </View>
           <Text style={styles.accountTextValue}>
@@ -58,18 +56,20 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
             onPress={() => navigation.navigate("ContactScreen")}
           >
             <Image source={ContactsIcon} style={styles.cardImage} />
-            <Text style={styles.cardText}>My Contacts</Text>
+            <Text style={styles.cardText}>{t("My Contacts")}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.blueLine}></View>
         <View style={styles.creditCardView}>
           <View style={styles.accountTextAndArrowView}>
-            <Text style={styles.accountText}>Transfer history </Text>
+            <Text style={styles.accountText}>{t("Transfer history")}</Text>
             <Image source={AccountArrowIcon} style={styles.accountArrowIcon} />
           </View>
-          <Text style={styles.accountTextValue}>Last transfer</Text>
-          <Text style={styles.accountTextValue}>Received: R$ 125,25</Text>
-          <Text style={styles.accountTextValue}>From: Jubiscleudo</Text>
+          <Text style={styles.accountTextValue}>{t("Last transfer")}</Text>
+          <Text style={styles.accountTextValue}>
+            {t("Received")}: R$ 125,25
+          </Text>
+          <Text style={styles.accountTextValue}>{t("From")}: Jubiscleudo</Text>
         </View>
       </MainContentContainer>
     </Container>
